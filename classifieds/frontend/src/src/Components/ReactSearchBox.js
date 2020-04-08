@@ -12,3 +12,5 @@ export default class App extends Component {
     )
   }
 }
+
+//Search box code from https://react-bootstrap.github.io/components/navbar/

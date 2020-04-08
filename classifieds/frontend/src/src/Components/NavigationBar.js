@@ -9,23 +9,28 @@ export default class NavigationBar extends Component {
     return (
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">CC</a>
-        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <div class="navbar-collapse collapse w-100">
           <ReactSearchBox/>
         </div>
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-          <li class="nav-item-active">
-            <a class="nav-link" href="#">Your Items</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+        <div class="navbar-collapse collapse w-100">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Your Items</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     )
   }
 }
 
-//https://getbootstrap.com/docs/4.1/components/navbar/?
-//https://getbootstrap.com/docs/4.0/utilities/spacing/
+/*
+Spacing: https://getbootstrap.com/docs/4.0/utilities/flex/
+Sizing:
+  https://getbootstrap.com/docs/4.0/utilities/sizing/
+  https://stackoverflow.com/questions/49390642/re-positioning-items-on-navbar-collapse-in-bootstrap
+NavigationBar: https://getbootstrap.com/docs/4.1/components/navbar/
+*/
