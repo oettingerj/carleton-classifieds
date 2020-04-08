@@ -1,6 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import NavigationBar from './Components/NavigationBar.js';
+import SideBar from './Components/SideBar.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import { Provider } from 'react-redux';
 
