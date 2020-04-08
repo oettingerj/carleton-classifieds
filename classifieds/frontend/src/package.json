@@ -8,9 +8,12 @@
     "flow": "flow"
   },
   "dependencies": {
+    "bootstrap": "^4.4.1",
     "ramda": "^0.27.0",
     "react": "^16.13.0",
+    "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.0",
+    "react-icons": "^3.9.0",
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.0",
     "redux": "^4.0.5",
@@ -20,8 +23,15 @@
     "seamless-immutable": "^7.1.4"
   },
   "devDependencies": {
+    "eslint-plugin-flowtype": "^4.7.0",
     "flow-bin": "^0.122.0",
     "standard": "^14.3.3"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "plugins": [
+      "flowtype"
+    ]
   },
   "browserslist": {
     "production": [
