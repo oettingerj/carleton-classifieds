@@ -1,46 +1,38 @@
-import { Card } from 'react-bootstrap'
-import React, { Component } from 'react'
+// @flow
 
-export default class SideBar extends Component {
-  render() {
+import { Nav } from 'react-bootstrap'
+import React, { Component } from 'react'
+import './Styles/SideBar.css'
+
+const pages = ['Clothing', 'Electronics', 'Books', 'Furniture', 'Homeware', 'Tools', 'Rides', 'Outdoor Gear', 'Toys', 'Miscellaneous']
+pages.sort()
+
+type Props = {}
+
+export default class SideBar extends Component<Props> {
+  buildNavItem = (title: string, url: string) => {
     return (
-      <div class="d-flex align-items-start">
-      <Card bg='light' text='white' style={{ height: '38rem', width: '9rem' }}>
-        <div class="text-left p-2 bd-highlight">
-          <a style={{color: "black"}} href="url">Clothing</a>
-        </div>
-        <div class="text-left p-2 bd-highlight">
-          <a style={{color: "black"}} href="url">Rides</a>
-        </div>
-        <div class="text-left p-2 bd-highlight">
-          <a style={{color: "black"}} href="url">Electronics</a>
-        </div>
-        <div class="text-left p-2 bd-highlight">
-          <a style={{color: "black"}} href="url">Furniture</a>
-        </div>
-        <div class="text-left p-2 bd-highlight">
-          <a style={{color: "black"}} href="url">Homeware</a>
-        </div>
-        <div class="text-left p-2 bd-highlight">
-          <a style={{color: "black"}} href="url">Tools</a>
-        </div>
-        <div class="text-left p-2 bd-highlight">
-          <a style={{color: "black"}} href="url">Outdoor Gear</a>
-        </div>
-        <div class="text-left p-2 bd-highlight">
-          <a style={{color: "black"}} href="url">Books</a>
-        </div>
-        <div class="text-left p-2 bd-highlight">
-          <a style={{color: "black"}} href="url">Toys</a>
-        </div>
-        <div class="text-left p-2 bd-highlight">
-          <a style={{color: "black"}} href="url">Rides</a>
-        </div>
-        <div class="text-left p-2 bd-highlight">
-          <a style={{color: "black"}} href="url">Miscellaneous</a>
-        </div>
-      </Card>
-      </div>
+      <Nav.Item className='sidebarItem'>
+        <Nav.Link href={url}>{title}</Nav.Link>
+      </Nav.Item>
+    )
+  }
+
+  renderNavItems = () => {
+    const items = []
+
+    for (const page of pages) {
+      items.push(this.buildNavItem(page, '#'))
+    }
+
+    return items
+  }
+
+  render () {
+    return (
+      <Nav className='flex-column' id='sidebar'>
+        {this.renderNavItems()}
+      </Nav>
     )
   }
 }

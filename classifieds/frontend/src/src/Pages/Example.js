@@ -5,14 +5,11 @@ import { connect } from 'react-redux'
 import ExampleActions from '../Redux/ExampleRedux'
 
 type Props = {
-  started: boolean
+  started: boolean,
+  dispatch: ({}) => void
 }
 
 class Example extends Component<Props> {
-  constructor (props: Props) {
-    super(props)
-  }
-
   reduxExample () {
     this.props.dispatch(ExampleActions.setStarted(true))
   }

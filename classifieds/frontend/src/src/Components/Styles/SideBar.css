@@ -1,0 +1,8 @@
+#sidebar {
+    background-color: #f8f9fa;
+    width: 200px;
+}
+
+.sidebarItem {
+    /*border-bottom: 1px solid lightgray;*/
+}

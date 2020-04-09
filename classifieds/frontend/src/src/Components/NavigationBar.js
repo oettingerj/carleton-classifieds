@@ -1,28 +1,27 @@
-import { nav } from 'react-bootstrap'
-import {Navbar} from 'react-bootstrap'
+// @flow
+
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
 import React, { Component } from 'react'
-import ReactSearchBox from './ReactSearchBox.js';
+import { Link } from 'react-router-dom'
 
+type Props = {}
 
-export default class NavigationBar extends Component {
-  render() {
+export default class NavigationBar extends Component<Props> {
+  render () {
     return (
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">CC</a>
-        <div class="navbar-collapse collapse w-100">
-          <ReactSearchBox/>
-        </div>
-        <div class="navbar-collapse collapse w-100">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Your Items</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <Navbar bg='light' expand='lg' className='pl-5 pr-5'>
+        <Navbar.Brand href='#'>CC</Navbar.Brand>
+        <Navbar.Collapse className='w-100'>
+          <Form inline>
+            <FormControl type='text' placeholder='Search' className='mr-sm-2' />
+            <Button variant='outline-primary'>Search</Button>
+          </Form>
+          <Nav className='mr-auto'>
+            <Nav.Link as={Link} to='/'>Home</Nav.Link>
+            <Nav.Link as={Link} to='/user'>Your Items</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     )
   }
 }
