@@ -11,12 +11,12 @@ export default class NavigationBar extends Component<Props> {
     return (
       <Navbar bg='light' expand='lg' className='pl-5 pr-5'>
         <Navbar.Brand href='#'>CC</Navbar.Brand>
-        <Navbar.Collapse className='w-100'>
+        <Navbar.Collapse className='justify-content-between'>
           <Form inline>
             <FormControl type='text' placeholder='Search' className='mr-sm-2' />
             <Button variant='outline-primary'>Search</Button>
           </Form>
-          <Nav className='mr-auto'>
+          <Nav>
             <Nav.Link as={Link} to='/'>Home</Nav.Link>
             <Nav.Link as={Link} to='/user'>Your Items</Nav.Link>
           </Nav>

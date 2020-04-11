@@ -1,11 +1,10 @@
 {
-  "name": "src",
+  "name": "carleton-classifieds",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "flow": "flow"
+    "build": "react-scripts build"
   },
   "dependencies": {
     "bootstrap": "^4.4.1",

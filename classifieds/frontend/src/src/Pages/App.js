@@ -11,7 +11,7 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
-import UserItems from './UserItems'
+import Account from './Account'
 
 const store = createStore()
 
@@ -22,7 +22,7 @@ function App () {
         <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }}>
           <NavBar fixed='top' />
           <Switch>
-            <Route path='/user' component={UserItems} />
+            <Route path='/user' component={Account} />
           </Switch>
         </Container>
       </Router>

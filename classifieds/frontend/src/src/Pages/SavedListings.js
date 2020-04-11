@@ -5,19 +5,20 @@ import { connect } from 'react-redux'
 import { Container } from 'react-bootstrap'
 import ListingComponent from '../Components/Listing'
 import type { Listing } from '../Config/types'
+import UserActions from '../Redux/UserRedux'
 
 type Props = {
   listings: Listing[],
   dispatch?: ({}) => void
 }
 
-class UserListings extends Component<Props> {
+class SavedListings extends Component<Props> {
   renderListings = () => {
     const components = []
 
     for (const listing of this.props.listings) {
       components.push(
-        <ListingComponent imageLocation='left' img={listing.img} title={listing.title} user={listing.user} />
+        <ListingComponent img={listing.img} title={listing.title} user={listing.user} />
       )
     }
     return components
@@ -27,7 +28,7 @@ class UserListings extends Component<Props> {
     return (
       <Container>
         <header>
-          <h2>Your Listings</h2>
+          <h2>Saved Items</h2>
         </header>
         <Container>
           {this.renderListings()}
@@ -41,4 +42,4 @@ const mapStateToProps = (state) => ({
   listings: state.user.savedListings
 })
 
-export default connect(mapStateToProps)(UserListings)
+export default connect(mapStateToProps)(SavedListings)
