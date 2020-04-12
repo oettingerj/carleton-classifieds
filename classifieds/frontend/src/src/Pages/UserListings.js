@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container } from 'react-bootstrap'
 import ListingComponent from '../Components/Listing'
-import type { Listing } from '../Config/types'
+import type { Listing } from '../Config/Types'
 
 type Props = {
   listings: Listing[],

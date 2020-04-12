@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Container } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import ListingComponent from '../Components/Listing'
-import type { Listing } from '../Config/types'
-import UserActions from '../Redux/UserRedux'
+import type { Listing } from '../Config/Types'
+import mockListings from '../Mock Data/Listings.json'
 
 type Props = {
   listings: Listing[],
@@ -18,7 +18,9 @@ class SavedListings extends Component<Props> {
 
     for (const listing of this.props.listings) {
       components.push(
-        <ListingComponent img={listing.img} title={listing.title} user={listing.user} />
+        <Col md={3}>
+          <ListingComponent img={listing.img} title={listing.title} user={listing.user} />
+        </Col>
       )
     }
     return components
@@ -31,7 +33,9 @@ class SavedListings extends Component<Props> {
           <h2>Saved Items</h2>
         </header>
         <Container>
-          {this.renderListings()}
+          <Row>
+            {this.renderListings()}
+          </Row>
         </Container>
       </Container>
     )
@@ -39,7 +43,7 @@ class SavedListings extends Component<Props> {
 }
 
 const mapStateToProps = (state) => ({
-  listings: state.user.savedListings
+  listings: mockListings
 })
 
 export default connect(mapStateToProps)(SavedListings)
