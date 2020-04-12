@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-
+import {Form, FormControl, Button} from 'react-bootstrap'
 export default class App extends Component {
   render() {
     return (
-      <form class="form-inline">
-        <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search"/>
-          <button class="btn btn-outline-secondary">
-            Search
-          </button>
-      </form>
+      <Form inline>
+        <FormControl type='text' placeholder='Search' className="mr-sm-2"/>
+        <Button variant='outline-primary'>Search</Button>
+      </Form>
     )
   }
 }

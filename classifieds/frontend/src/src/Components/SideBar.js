@@ -4,10 +4,16 @@ import { Nav } from 'react-bootstrap'
 import React, { Component } from 'react'
 import './Styles/SideBar.css'
 
-const pages = ['Clothing', 'Electronics', 'Books', 'Furniture', 'Homeware', 'Tools', 'Rides', 'Outdoor Gear', 'Toys', 'Miscellaneous']
+const pages = ['Clothing', 'Electronics', 'Books', 'Furniture', 'Homeware', 'Tools', 'Rides', 'Outdoor Gear', 'Toys', 'Miscellaneous','Tigers']
 pages.sort()
 
-type Props = {}
+type Props = {
+  img: string,
+  title: string,
+  user: string,
+  price: number,
+  description: string
+}
 
 export default class SideBar extends Component<Props> {
   buildNavItem = (title: string, url: string) => {
@@ -20,11 +26,9 @@ export default class SideBar extends Component<Props> {
 
   renderNavItems = () => {
     const items = []
-
     for (const page of pages) {
       items.push(this.buildNavItem(page, '#'))
     }
-
     return items
   }
 
