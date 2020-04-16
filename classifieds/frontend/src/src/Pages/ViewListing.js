@@ -23,18 +23,22 @@ export default class ViewListing extends Component<Props> {
             <Card style={{}}>
               <Card.Body>
                 <Row>
-                  <Col md={10}>
+                  <Col md={8}>
+                    <Card.Img variant="bottom" src={this.props.img} className= "w-100" />
+                  </Col>
+                  <Col md={2}>
                     <Card.Title>{this.props.title}</Card.Title>
+                    <Card.Subtitle>{this.props.user}</Card.Subtitle>
                   </Col>
                   <Col md={2}>
                     <Card.Title>${this.props.price}</Card.Title>
                   </Col>
                 </Row>
-                <Card.Subtitle>{this.props.user}</Card.Subtitle>
-                <Card.Text>{this.props.description}</Card.Text>
-                <Button className='mt-3' variant='outline-primary'>I'm Interested</Button>
+                <Card.Text className='p-2'>{this.props.description}</Card.Text>
+                <Row className="justify-content-md-center">
+                  <Button variant='outline-primary'>I'm Interested</Button>
+                </Row>
               </Card.Body>
-                <Card.Img variant="bottom" src={this.props.img}/>
             </Card>
         </Container>
       </Row>
