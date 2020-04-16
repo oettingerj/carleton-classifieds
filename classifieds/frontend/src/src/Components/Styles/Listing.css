@@ -1,11 +1,11 @@
 .listingTitle {
     text-overflow: ellipsis;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
 }
 
 .listingCard {
-    height: 350px;
+    /*height: 320px;*/
 }
 
 .listingInfo {
@@ -13,6 +13,5 @@
 }
 
 .listingUser {
-    font-size: 14px;
-    color: deepskyblue;
+    font-size: 16px;
 }
