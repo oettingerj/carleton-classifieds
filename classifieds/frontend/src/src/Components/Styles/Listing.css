@@ -1,0 +1,18 @@
+.listingTitle {
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.listingCard {
+    height: 350px;
+}
+
+.listingInfo {
+
+}
+
+.listingUser {
+    font-size: 14px;
+    color: deepskyblue;
+}

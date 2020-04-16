@@ -6,7 +6,7 @@ import ReduxPersist from '../Config/ReduxPersist'
 
 /* ------------- Assemble The Reducers ------------- */
 export const reducers = combineReducers({
-  example: require('./ExampleRedux').reducer
+  user: require('./UserRedux').reducer
 })
 
 export default () => {

@@ -1,13 +1,16 @@
 // @flow
 
 import React, { Component } from 'react'
-import { Card, Button, Row, Col } from 'react-bootstrap'
+import { Card, Button, Row, Col, Image, Container } from 'react-bootstrap'
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io'
+import type { User } from '../Config/Types'
+import './Styles/Listing.css'
 
 type Props = {
-  img: string,
+  img?: string,
+  imageLocation?: 'top' | 'left',
   title: string,
-  user: string,
+  user: User,
   style?: {}
 }
 type State = {
@@ -15,6 +18,10 @@ type State = {
 }
 
 export default class Listing extends Component<Props, State> {
+  static defaultProps = {
+    imageLocation: 'top'
+  }
+
   constructor (props: Props) {
     super(props)
     this.state = {
@@ -40,24 +47,57 @@ export default class Listing extends Component<Props, State> {
     })
   }
 
+  renderTopImage = () => {
+    if (this.props.imageLocation === 'top') {
+      return (
+        <Image fluid rounded src={this.props.img} className='mx-auto my-2 w-75' />
+      )
+    }
+    return null
+  }
+
+  renderLeftImage = () => {
+    if (this.props.imageLocation === 'left') {
+      return (
+        <Col sm={2} className='my-auto'>
+          <Image fluid src={this.props.img} />
+        </Col>
+      )
+    }
+    return null
+  }
+
   render () {
     return (
-      <Card style={this.props.style}>
-        <Card.Img variant='top' src={this.props.img} />
-        <Card.Body>
+      <Card style={this.props.style} className='listingCard'>
+        {this.renderTopImage()}
+        <Container fluid>
           <Row>
-            <Col>
-              <Card.Title>{this.props.title}</Card.Title>
-            </Col>
-            <Col className='d-flex justify-content-end'>
-              <Button onClick={this.handleLikePress} variant='light' size='sm'>
-                {this.renderLikeButton()}
-              </Button>
+            {this.renderLeftImage()}
+            <Col className='listingInfo align-items-center'>
+              <Row>
+                <Col sm={8}>
+                  <div className='listingTitle'>{this.props.title}</div>
+                </Col>
+                <Col className='d-flex justify-content-end'>
+                  <Button onClick={this.handleLikePress} variant='light' size='sm' className='mb-auto'>
+                    {this.renderLikeButton()}
+                  </Button>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <div className='listingUser'>{this.props.user.name}</div>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Button className='mt-3' variant='outline-primary'>View Listing</Button>
+                </Col>
+              </Row>
             </Col>
           </Row>
-          <Card.Subtitle>{this.props.user}</Card.Subtitle>
-          <Button className='mt-3' variant='outline-primary'>View Listing</Button>
-        </Card.Body>
+        </Container>
       </Card>
     )
   }

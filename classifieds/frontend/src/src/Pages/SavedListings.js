@@ -2,22 +2,25 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Container } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import ListingComponent from '../Components/Listing'
 import type { Listing } from '../Config/Types'
+import mockListings from '../Mock Data/Listings.json'
 
 type Props = {
   listings: Listing[],
   dispatch?: ({}) => void
 }
 
-class UserListings extends Component<Props> {
+class SavedListings extends Component<Props> {
   renderListings = () => {
     const components = []
 
     for (const listing of this.props.listings) {
       components.push(
-        <ListingComponent imageLocation='left' img={listing.img} title={listing.title} user={listing.user} />
+        <Col md={3}>
+          <ListingComponent img={listing.img} title={listing.title} user={listing.user} />
+        </Col>
       )
     }
     return components
@@ -27,10 +30,12 @@ class UserListings extends Component<Props> {
     return (
       <Container>
         <header>
-          <h2>Your Listings</h2>
+          <h2>Saved Items</h2>
         </header>
         <Container>
-          {this.renderListings()}
+          <Row>
+            {this.renderListings()}
+          </Row>
         </Container>
       </Container>
     )
@@ -38,7 +43,7 @@ class UserListings extends Component<Props> {
 }
 
 const mapStateToProps = (state) => ({
-  listings: state.user.savedListings
+  listings: mockListings
 })
 
-export default connect(mapStateToProps)(UserListings)
+export default connect(mapStateToProps)(SavedListings)
