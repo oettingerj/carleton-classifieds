@@ -10,7 +10,7 @@ export default class NavigationBar extends Component<Props> {
   render () {
     return (
       <Navbar bg='light' expand='lg' className='pl-5 pr-5'>
-        <Navbar.Brand href='#'>CC</Navbar.Brand>
+        <Navbar.Brand as={Link} to='/'>CC</Navbar.Brand>
         <Navbar.Collapse className='justify-content-between'>
           <Form inline>
             <FormControl type='text' placeholder='Search' className='mr-sm-2' />

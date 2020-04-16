@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container } from 'react-bootstrap'
-import ListingComponent from '../Components/Listing'
+import ListingComponent from '../Components/UserListing'
 import type { Listing } from '../Config/Types'
 
 type Props = {
@@ -17,7 +17,7 @@ class UserListings extends Component<Props> {
 
     for (const listing of this.props.listings) {
       components.push(
-        <ListingComponent imageLocation='left' img={listing.img} title={listing.title} user={listing.user} />
+        <ListingComponent id={listing.id} img={listing.img} title={listing.title} user={listing.user} />
       )
     }
     return components
@@ -38,7 +38,7 @@ class UserListings extends Component<Props> {
 }
 
 const mapStateToProps = (state) => ({
-  listings: state.user.savedListings
+  listings: state.user.listings
 })
 
 export default connect(mapStateToProps)(UserListings)
