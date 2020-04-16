@@ -72,7 +72,7 @@ export default class Listing extends Component<Props, State> {
       <Card style={this.props.style} className='listingCard'>
         {this.renderTopImage()}
         <Container fluid>
-          <Row className=''>
+          <Row>
             {this.renderLeftImage()}
             <Col className='listingInfo align-items-center'>
               <Row>
