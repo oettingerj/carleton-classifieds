@@ -11,25 +11,29 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Account from './Account'
 import CreateListing from './CreateListing'
 import ViewListing from './ViewListing'
+import ReactDOM from 'react-dom';
+import GoogleLogin from 'react-google-login';
 
 const store = createStore()
+const responseGoogle = (response) => {
+  console.log(response);
+}
 
 function App () {
   return (
-    <Provider store={store}>
-      <Router>
-        <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }}>
-          <NavBar fixed='top' />
-          <Switch>
-            <Route path='/user' component={Account} />
-            <Route path='/listing/:id' component={ViewListing} />
-            <Route path='/create_listing' component={CreateListing} />
-            <Route path='/' component={Home} />
-          </Switch>
-        </Container>
-      </Router>
-    </Provider>
+    <GoogleLogin
+      clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+      buttonText="Login"
+      onSuccess={responseGoogle}
+      onFailure={responseGoogle}
+      cookiePolicy={'single_host_origin'}
+  />
   )
 }
+
+ReactDOM.render(
+  <App/>
+  ,document.getElementById('root')
+);
 
 export default App
