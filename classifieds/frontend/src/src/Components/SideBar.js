@@ -4,7 +4,7 @@ import { Nav } from 'react-bootstrap'
 import React, { Component } from 'react'
 import './Styles/SideBar.css'
 
-const pages = ['Clothing', 'Electronics', 'Books', 'Furniture', 'Homeware', 'Tools', 'Rides', 'Outdoor Gear', 'Toys', 'Miscellaneous', 'Tigers']
+const pages = ['Clothing', 'Electronics', 'Books', 'Furniture', 'Homeware', 'Tools', 'Outdoor Gear', 'Toys', 'Miscellaneous', 'Tigers']
 pages.sort()
 
 type Props = {

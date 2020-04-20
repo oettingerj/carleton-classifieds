@@ -17,7 +17,8 @@ export default class NavigationBar extends Component<Props> {
             <Button variant='outline-primary'>Search</Button>
           </Form>
           <Nav>
-            <Nav.Link as={Link} to='/'>Home</Nav.Link>
+            <Nav.Link as={Link} to='/'>Listings</Nav.Link>
+            <Nav.Link as={Link} to='/rides'>Rides</Nav.Link>
             <Nav.Link as={Link} to='/user'>Your Items</Nav.Link>
           </Nav>
         </Navbar.Collapse>

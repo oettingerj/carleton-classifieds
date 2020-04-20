@@ -11,6 +11,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Account from './Account'
 import CreateListing from './CreateListing'
 import ViewListing from './ViewListing'
+import Rides from './Rides'
+import ViewRide from './ViewRide'
 
 const store = createStore()
 
@@ -22,6 +24,8 @@ function App () {
           <NavBar fixed='top' />
           <Switch>
             <Route path='/user' component={Account} />
+            <Route path='/rides/:id' component={ViewRide} />
+            <Route path='/rides' component={Rides} />
             <Route path='/listing/:id' component={ViewListing} />
             <Route path='/create_listing' component={CreateListing} />
             <Route path='/' component={Home} />

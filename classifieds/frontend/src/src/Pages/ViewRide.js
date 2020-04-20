@@ -2,13 +2,13 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import React, { Component } from 'react'
 import SideBar from '../Components/SideBar'
 import { connect } from 'react-redux'
-import type { ItemListing } from '../Config/Types'
+import type { RideListing } from '../Config/Types'
 
 type Props = {
-  listing: ItemListing
+  ride: RideListing
 }
 
-class ViewListing extends Component<Props> {
+class ViewRide extends Component<Props> {
   render () {
     return (
       <Row>
@@ -16,21 +16,21 @@ class ViewListing extends Component<Props> {
           <SideBar />
         </Col>
         <Container className='mx-auto mt-4'>
-          <Card style={{}}>
+          <Card>
             <Card.Body>
               <Row>
                 <Col md={8}>
-                  <Card.Img variant='bottom' src={this.props.listing.img} className='w-100' />
+                  <Card.Img variant='bottom' src={this.props.ride.img} className='w-100' />
                 </Col>
                 <Col md={2}>
-                  <Card.Title>{this.props.listing.title}</Card.Title>
-                  <Card.Subtitle>{this.props.listing.user.name}</Card.Subtitle>
+                  <Card.Title>{this.props.ride.title}</Card.Title>
+                  <Card.Subtitle>{this.props.ride.user.name}</Card.Subtitle>
                 </Col>
                 <Col md={2}>
-                  <Card.Title>${this.props.listing.price}</Card.Title>
+                  <Card.Title>${this.props.ride.price}</Card.Title>
                 </Col>
               </Row>
-              <Card.Text className='p-2'>{this.props.listing.description}</Card.Text>
+              <Card.Text className='p-2'>{this.props.ride.description}</Card.Text>
               <Row className='justify-content-md-center'>
                 <Button variant='outline-primary'>I'm Interested</Button>
               </Row>
@@ -40,21 +40,18 @@ class ViewListing extends Component<Props> {
       </Row>
     )
   }
-
-  /*
-    Card Component: https://react-bootstrap.github.io/components/cards/#images
-    https://stackoverflow.com/questions/46656476/rendering-empty-space-in-react
-  */
 }
 
 const mapStateToProps = (state, ownProps) => {
   const id = parseInt(ownProps.match.params.id)
-  for (const listing of state.listings.listings) {
-    if (listing.id === id) {
-      return { listing }
+  for (const rideListing of state.listings.rides) {
+    if (rideListing.id === id) {
+      return {
+        ride: rideListing
+      }
     }
   }
   return {}
 }
 
-export default connect(mapStateToProps)(ViewListing)
+export default connect(mapStateToProps)(ViewRide)

@@ -7,12 +7,12 @@ export type User = {
   type?: 'faculty' | 'staff' | 'student'
 }
 
-export type Listing = {
+export type ItemListing = {
   id: string,
   title: string,
-  img?: string,
   description?: string,
   user: User,
+  img: string,
   price: number,
   sold: boolean
 }
@@ -25,10 +25,11 @@ export type Location = {
 
 export type RideListing = {
   id: string,
+  title: string,
+  description?: string,
   user: User,
   startLocation: Location,
   endLocation: Location,
-  description?: string,
   passengers: number,
   distance: number
 }

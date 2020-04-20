@@ -22,15 +22,18 @@ export default class Listing extends Component<Props> {
             <Col sm={2} className='my-auto'>
               <Image fluid src={this.props.img} />
             </Col>
-            <Col className='listingInfo align-items-center'>
+            <Col className='my-auto listingInfo align-items-center'>
               <Row>
-                <Col sm={8}>
+                <Col md={8}>
                   <div className='listingTitle'>{this.props.title}</div>
+                </Col>
+                <Col>
+                  <div className='text-primary'>10 people interested</div>
                 </Col>
               </Row>
               <Row>
-                <Col>
-                  <Button className='mt-3' variant='outline-primary'>View Listing</Button>
+                <Col md={8}>
+                  <Button className='mt-3' variant='outline-primary'>View/Edit Listing</Button>
                 </Col>
               </Row>
             </Col>

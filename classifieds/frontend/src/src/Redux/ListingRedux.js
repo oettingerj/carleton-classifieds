@@ -1,6 +1,7 @@
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 import mockListings from '../Mock Data/Listings.js'
+import mockRides from '../Mock Data/RideListings'
 
 /* ------------- Types and Action Creators ------------- */
 
@@ -17,7 +18,8 @@ const shuffledListings = shuffle(mockListings.slice())
 
 export const INITIAL_STATE = Immutable({
   savedListings: shuffledListings.slice(0, 12),
-  listings: mockListings
+  listings: mockListings,
+  rides: mockRides
 })
 
 /* ------------- Reducers ------------- */
