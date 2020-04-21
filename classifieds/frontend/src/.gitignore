@@ -1,10 +1,13 @@
-# Don't check auto-generated stuff into git
-coverage
-build
-node_modules
-stats.json
 
-# Cruft
-.DS_Store
-npm-debug.log
+# dependencies
+/node_modules
+package-lock.json
+
+# intelliJ
 .idea
+
+# production
+/build
+
+# misc
+.DS_Store
