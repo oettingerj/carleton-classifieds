@@ -13,9 +13,9 @@ export default class NavigationBar extends Component<Props> {
         <Navbar.Brand as={Link} to='/'>CC</Navbar.Brand>
         <Navbar.Collapse className='justify-content-between'>
           <Nav>
-            <Nav.Link as={Link} to='/'>Listings</Nav.Link>
-            <Nav.Link as={Link} to='/rides'>Rides</Nav.Link>
-            <Nav.Link as={Link} to='/user'>Your Items</Nav.Link>
+            <Nav.Link as={Link} to='/' href='/'>Listings</Nav.Link>
+            <Nav.Link as={Link} to='/rides' href='/rides'>Rides</Nav.Link>
+            <Nav.Link as={Link} to='/user' href='/user'>Your Items</Nav.Link>
           </Nav>
           <Form inline>
             <FormControl type='text' placeholder='Search' className='mr-sm-2' />

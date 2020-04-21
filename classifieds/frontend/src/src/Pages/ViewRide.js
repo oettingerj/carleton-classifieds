@@ -13,6 +13,10 @@ type Props = {
 }
 
 class ViewRide extends Component<Props> {
+  mapOptions = {
+    fullscreenControl: false
+  }
+
   constructor (props: Props) {
     super(props)
     const size = {
@@ -89,6 +93,7 @@ class ViewRide extends Component<Props> {
                           bootstrapURLKeys={{ key: 'AIzaSyDQxf6bbw9DxeYDg40WN8PbDeQ-oF9SYiw' }}
                           center={this.center}
                           zoom={this.zoom - 1}
+                          options={this.mapOptions}
                         >
                           <FaMapMarkerAlt
                             className='text-success'
