@@ -1,14 +1,14 @@
-.locationTitle {
+.locationTitleSmall {
     text-overflow: ellipsis;
     font-size: 16px;
     font-weight: 500;
 }
 
-.secondaryText {
+.secondaryTextSmall {
     font-size: 14px;
 }
 
-.listingUser {
+.listingUserSmall {
     font-size: 16px;
 }
 

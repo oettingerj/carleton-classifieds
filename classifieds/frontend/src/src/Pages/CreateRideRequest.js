@@ -6,7 +6,7 @@ type Props = {
 
 }
 
-export default class CreateListing extends Component<Props> {
+export default class CreateRideRequest extends Component<Props> {
   render () {
     return (
       <Row>
@@ -78,10 +78,4 @@ export default class CreateListing extends Component<Props> {
       </Row>
     )
   }
-  /*
-    Card Component: https://react-bootstrap.github.io/components/cards/#images
-    Form Component: https://react-bootstrap.github.io/components/forms/
-    https://stackoverflow.com/questions/4328947/limit-file-format-when-using-input-type-file
-    https://stackoverflow.com/questions/46656476/rendering-empty-space-in-react
-  */
 }

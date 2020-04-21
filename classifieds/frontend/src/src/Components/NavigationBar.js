@@ -9,18 +9,18 @@ type Props = {}
 export default class NavigationBar extends Component<Props> {
   render () {
     return (
-      <Navbar bg='light' expand='lg' className='pl-5 pr-5'>
+      <Navbar sticky='top' bg='light' expand='lg' className='pl-5 pr-5'>
         <Navbar.Brand as={Link} to='/'>CC</Navbar.Brand>
         <Navbar.Collapse className='justify-content-between'>
-          <Form inline>
-            <FormControl type='text' placeholder='Search' className='mr-sm-2' />
-            <Button variant='outline-primary'>Search</Button>
-          </Form>
           <Nav>
             <Nav.Link as={Link} to='/'>Listings</Nav.Link>
             <Nav.Link as={Link} to='/rides'>Rides</Nav.Link>
             <Nav.Link as={Link} to='/user'>Your Items</Nav.Link>
           </Nav>
+          <Form inline>
+            <FormControl type='text' placeholder='Search' className='mr-sm-2' />
+            <Button variant='outline-primary'>Search</Button>
+          </Form>
         </Navbar.Collapse>
       </Navbar>
     )

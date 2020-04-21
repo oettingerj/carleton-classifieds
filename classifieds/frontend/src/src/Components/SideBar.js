@@ -14,7 +14,7 @@ type Props = {
 export default class SideBar extends Component<Props> {
   buildNavItem = (title: string, url: string) => {
     return (
-      <Nav.Item className='sidebarItem'>
+      <Nav.Item key={title} className='sidebarItem'>
         <Nav.Link href={url}>{title}</Nav.Link>
       </Nav.Item>
     )

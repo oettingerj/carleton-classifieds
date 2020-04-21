@@ -55,7 +55,7 @@ export default class ListingComponent extends Component<Props, State> {
     return (
       <Card style={this.props.style}>
         <Card.Header className='d-flex justify-content-between'>
-          <div className='listingUser text-primary my-auto'>{this.props.ride.user.name}</div>
+          <div className='listingUserSmall text-primary my-auto'>{this.props.ride.user.name}</div>
           <Button onClick={this.handleLikePress} size='sm' className='likeButton'>
             {this.renderLikeButton()}
           </Button>
@@ -66,18 +66,18 @@ export default class ListingComponent extends Component<Props, State> {
               <Row>
                 <Col md={8}>
                   <Row>
-                    <Col className='locationTitle text-success'>{this.props.ride.startLocation.name}</Col>
+                    <Col className='locationTitleSmall text-success'>{this.props.ride.startLocation.name}</Col>
                   </Row>
                   <Row>
-                    <Col className='secondaryText text-secondary'>to</Col>
+                    <Col className='secondaryTextSmall text-secondary'>to</Col>
                   </Row>
                   <Row>
-                    <Col className='locationTitle text-danger'>{this.props.ride.endLocation.name}</Col>
+                    <Col className='locationTitleSmall text-danger'>{this.props.ride.endLocation.name}</Col>
                   </Row>
                 </Col>
-                <Col md={4} className=' d-flex flex-column justify-content-between text-center text-secondary secondaryText'>
+                <Col md={4} className='my-auto text-center text-secondary secondaryTextSmall'>
                   <p>{`${this.props.ride.distance} miles`}</p>
-                  <p className='mt-2'>{this.getPassengerText()}</p>
+                  <p>{this.getPassengerText()}</p>
                 </Col>
               </Row>
               <Row className='mt-3'>
