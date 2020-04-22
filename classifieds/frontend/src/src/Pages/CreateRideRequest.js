@@ -1,81 +1,273 @@
-import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
+// @flow
+
+import { Container, Row, Col, Card, Form, Button, Modal } from 'react-bootstrap'
 import React, { Component } from 'react'
 import SideBar from '../Components/SideBar'
+import { GOOGLE_API_KEY } from '../Services/API'
+import * as yup from 'yup'
+import { Formik } from 'formik'
+import { connect } from 'react-redux'
+import ListingActions from '../Redux/ListingRedux'
+import type { RideListing, User } from '../Config/Types'
+import moment from 'moment'
 
-type Props = {
+const locationSchema = yup.object({
+  name: yup.string().required(),
+  latitude: yup.number().required(),
+  longitude: yup.number().required(),
+  address: yup.string()
+})
 
+const formSchema = yup.object({
+  pickup: locationSchema,
+  dropoff: locationSchema,
+  datetime: yup.date().required(),
+  ampm: yup.string().required(),
+  passengers: yup.number().required().integer().min(1)
+})
+
+const initialFormValues = {
+  pickup: null,
+  dropoff: null,
+  datetime: null,
+  ampm: 'AM',
+  passengers: 1
 }
 
-export default class CreateRideRequest extends Component<Props> {
+type Props = {
+  user: User,
+  dispatch: any,
+  history: any
+}
+type State = {
+  showModal: boolean
+}
+
+class CreateRideRequest extends Component<Props, State> {
+  pickupAutocomplete: any
+  dropoffAutocomplete: any
+  setFieldValue: (field: string, value: any) => void
+
+  constructor (props: Props) {
+    super(props)
+    this.state = {
+      showModal: false
+    }
+  }
+
+  componentDidMount () {
+    this.loadGoogleMaps(this.onMapsLoad)
+  }
+
+  loadGoogleMaps = (callback: () => void) => {
+    const existingScript = document.getElementById('googleMaps')
+
+    if (!existingScript) {
+      const script = document.createElement('script')
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places`
+      script.id = 'googleMaps'
+      // $FlowFixMe
+      document.body.appendChild(script)
+
+      script.onload = () => {
+        if (callback) callback()
+      }
+    }
+
+    if (existingScript && callback) callback()
+  }
+
+  onMapsLoad = () => {
+    const options = {
+      componentRestrictions: {
+        country: 'us'
+      }
+    }
+
+    /* global google */
+    // $FlowFixMe
+    this.pickupAutocomplete = new google.maps.places.Autocomplete(
+      document.getElementById('pickupField'),
+      options
+    )
+
+    this.dropoffAutocomplete = new google.maps.places.Autocomplete(
+      document.getElementById('dropoffField'),
+      options
+    )
+
+    this.pickupAutocomplete.setFields(['address_components', 'formatted_address', 'geometry', 'name', 'vicinity'])
+    this.pickupAutocomplete.addListener('place_changed', () => this.handlePlaceSelect('pickup'))
+    this.dropoffAutocomplete.setFields(['address_components', 'formatted_address', 'geometry', 'name', 'vicinity'])
+    this.dropoffAutocomplete.addListener('place_changed', () => this.handlePlaceSelect('dropoff'))
+  }
+
+  handlePlaceSelect = (fieldName: 'pickup' | 'dropoff') => {
+    const autocomplete = fieldName === 'pickup' ? this.pickupAutocomplete : this.dropoffAutocomplete
+    const place = autocomplete.getPlace()
+    this.setFieldValue(fieldName, {
+      name: place.name,
+      address: place.formatted_address,
+      latitude: place.geometry.location.lat(),
+      longitude: place.geometry.location.lng()
+    })
+  }
+
+  handleSubmit = (values: any) => {
+    const time = moment(values.datetime)
+    if (values.ampm === 'PM') time.add(12, 'hours')
+    const ride: RideListing = {
+      id: 51,
+      user: this.props.user,
+      datetime: time,
+      startLocation: values.pickup,
+      endLocation: values.dropoff,
+      passengers: values.passengers,
+      distance: calculateDistance(values.pickup, values.dropoff)
+    }
+
+    this.props.dispatch(ListingActions.createRideRequest(ride))
+    this.setState({ showModal: true })
+  }
+
+  handleModalClose = () => {
+    this.setState({ showModal: false })
+    this.props.history.goBack()
+  }
+
+  renderForm = ({
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    values,
+    touched,
+    isValid,
+    errors,
+    setFieldValue
+  }: any) => {
+    this.setFieldValue = setFieldValue
+    return (
+      <Form noValidate onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label>Pickup Location</Form.Label>
+          <Form.Control
+            required
+            type='text'
+            id='pickupField'
+            name='pickup'
+            isValid={touched.pickup && !errors.pickup}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Drop-off Location</Form.Label>
+          <Form.Control
+            required
+            type='text'
+            id='dropoffField'
+            name='dropoff'
+            isValid={touched.dropoff && !errors.dropoff}
+          />
+        </Form.Group>
+        <Form.Row>
+          <Form.Group as={Col}>
+            <Form.Label>Date & Time (Central Time)</Form.Label>
+            <Row>
+              <Col md='auto'>
+                <Form.Control
+                  required
+                  placeholder='MM/DD/YY hh:mm'
+                  name='datetime'
+                  value={values.datetime}
+                  onChange={handleChange}
+                  isValid={touched.datetime && !errors.datetime}
+                />
+              </Col>
+              <Col md='auto'>
+                <Form.Control
+                  required
+                  custom
+                  as='select'
+                  name='ampm'
+                  value={values.ampm}
+                  onChange={handleChange}
+                  isValid={touched.ampm && !errors.ampm}
+                >
+                  <option>AM</option>
+                  <option>PM</option>
+                </Form.Control>
+              </Col>
+            </Row>
+          </Form.Group>
+          <Form.Group as={Col}>
+            <Form.Label># of Passengers</Form.Label>
+            <Form.Control
+              required
+              type='number'
+              placeholder={1}
+              min={1}
+              name='passengers'
+              value={values.passengers}
+              onChange={handleChange}
+              isValid={touched.passengers && !errors.passengers}
+            />
+          </Form.Group>
+        </Form.Row>
+        <Button type='submit'>Submit</Button>
+      </Form>
+    )
+  }
+
   render () {
     return (
       <Row>
         <Col md='auto'>
           <SideBar />
         </Col>
-        <Container className='ml-auto'>
-          <span>&nbsp;&nbsp;</span>
+        <Container className='mx-auto mt-3'>
           <Card>
             <Card.Body>
-              <Card.Title> Create Listing </Card.Title>
-              <Row>
-                <Col md={6}>
-                  <Form>
-                    <Form.Group controlId='1'>
-                      <Form.Label>Item Name</Form.Label>
-                      <Form.Control placeholder='Ex: Shoes' />
-                    </Form.Group>
-                  </Form>
-                </Col>
-                <Col md={6}>
-                  <Form.Group controlId='2'>
-                    <Form.Label>Price</Form.Label>
-                    <Form.Control placeholder='In Dollars' />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={6}>
-                  <Form.Group controlId='4'>
-                    <Form.Label>Type Of Item</Form.Label>
-                    <Form.Control as='select' multiple>
-                      <option> Books </option>
-                      <option> Clothing </option>
-                      <option> Electronics </option>
-                      <option> Furniture </option>
-                      <option> Homeware </option>
-                      <option> Miscellaneous </option>
-                      <option> Outdoor Gear </option>
-                      <option> Rides </option>
-                      <option> Tools </option>
-                      <option> Toys </option>
-                    </Form.Control>
-                  </Form.Group>
-                </Col>
-                <Col md={6}>
-                  <Form.Group controlId='5'>
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control as='textarea' rows='3' />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Row className='justify-content-md-center'>
-                <Form>
-                  <Form.File
-                    id='6'
-                    label='Upload Image of Item'
-                    accept='image/png'
-                    custom
-                  />
-                </Form>
-              </Row>
-              <Row className='justify-content-md-center'>
-                <Button className='mt-3' variant='outline-primary'>Submit</Button>
-              </Row>
+              <Card.Title> New Ride Request </Card.Title>
+              <Formik onSubmit={this.handleSubmit} validationSchema={formSchema} initialValues={initialFormValues}>
+                {this.renderForm}
+              </Formik>
             </Card.Body>
           </Card>
         </Container>
+        <Modal centered show={this.state.showModal}>
+          <Modal.Header>Your ride request has been submitted!</Modal.Header>
+          <Modal.Footer>
+            <Button variant='primary' onClick={this.handleModalClose}>
+              Back to Rides
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Row>
     )
   }
 }
+
+// https://www.geodatasource.com/developers/javascript
+const calculateDistance = (pickup, dropoff) => {
+  const radlat1 = Math.PI * pickup.latitude / 180
+  const radlat2 = Math.PI * dropoff.latitude / 180
+  const theta = pickup.longitude - dropoff.longitude
+  const radtheta = Math.PI * theta / 180
+  let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta)
+  if (dist > 1) {
+    dist = 1
+  }
+  dist = Math.acos(dist)
+  dist = dist * 180 / Math.PI
+  dist = dist * 60 * 1.1515
+  return Math.round(dist)
+}
+
+const mapStateToProps = (state) => ({
+  user: {
+    name: state.user.name,
+    id: state.user.id,
+    email: state.user.email
+  }
+})
+
+export default connect(mapStateToProps)(CreateRideRequest)

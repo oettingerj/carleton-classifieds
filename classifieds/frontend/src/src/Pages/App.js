@@ -13,6 +13,7 @@ import CreateListing from './CreateListing'
 import ViewListing from './ViewListing'
 import Rides from './Rides'
 import ViewRide from './ViewRide'
+import CreateRideRequest from './CreateRideRequest'
 
 const store = createStore()
 
@@ -28,6 +29,7 @@ function App () {
             <Route path='/rides' component={Rides} />
             <Route path='/listing/:id' component={ViewListing} />
             <Route path='/create_listing' component={CreateListing} />
+            <Route path='/create_ride_request' component={CreateRideRequest} />
             <Route path='/' component={Home} />
           </Switch>
         </Container>

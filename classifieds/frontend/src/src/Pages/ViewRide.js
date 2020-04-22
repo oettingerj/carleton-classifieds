@@ -1,3 +1,5 @@
+// @flow
+
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import React, { Component } from 'react'
 import Map from 'google-map-react'
@@ -6,6 +8,7 @@ import { connect } from 'react-redux'
 import type { RideListing } from '../Config/Types'
 import SideBar from '../Components/SideBar'
 import { FaMapMarkerAlt } from 'react-icons/fa'
+import { GOOGLE_API_KEY } from '../Services/API'
 import './Styles/ViewRide.css'
 
 type Props = {
@@ -13,6 +16,9 @@ type Props = {
 }
 
 class ViewRide extends Component<Props> {
+  center: {}
+  zoom: number
+
   mapOptions = {
     fullscreenControl: false
   }
@@ -90,7 +96,7 @@ class ViewRide extends Component<Props> {
                     <Col>
                       <div style={{ height: '30vw', width: '30vw' }}>
                         <Map
-                          bootstrapURLKeys={{ key: 'AIzaSyDQxf6bbw9DxeYDg40WN8PbDeQ-oF9SYiw' }}
+                          bootstrapURLKeys={{ key: GOOGLE_API_KEY }}
                           center={this.center}
                           zoom={this.zoom - 1}
                           options={this.mapOptions}

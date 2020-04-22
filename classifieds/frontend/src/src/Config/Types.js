@@ -8,9 +8,9 @@ export type User = {
 }
 
 export type ItemListing = {
-  id: string,
+  id: string | number,
   title: string,
-  description?: string,
+  description: string,
   user: User,
   img: string,
   price: number,
@@ -20,14 +20,14 @@ export type ItemListing = {
 export type Location = {
   name: string,
   latitude: number,
-  longitude: number
+  longitude: number,
+  address: string
 }
 
 export type RideListing = {
-  id: string,
-  title: string,
-  description?: string,
+  id: string | number,
   user: User,
+  datetime: Date,
   startLocation: Location,
   endLocation: Location,
   passengers: number,

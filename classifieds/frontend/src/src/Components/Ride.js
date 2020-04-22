@@ -1,10 +1,11 @@
 // @flow
 
 import React, { Component } from 'react'
-import { Card, Button, Row, Col, Image, Container } from 'react-bootstrap'
+import { Card, Button, Row, Col, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io'
 import type { RideListing } from '../Config/Types'
+import moment from 'moment'
 import './Styles/Ride.css'
 
 type Props = {
@@ -16,11 +17,16 @@ type State = {
 }
 
 export default class ListingComponent extends Component<Props, State> {
+  dateString: string
+
   constructor (props: Props) {
     super(props)
     this.state = {
       liked: false
     }
+
+    const dateObj = moment(this.props.ride.datetime)
+    this.dateString = dateObj.format('ddd MMM D, h:mm a')
   }
 
   getPassengerText = () => {
@@ -54,11 +60,23 @@ export default class ListingComponent extends Component<Props, State> {
   render () {
     return (
       <Card style={this.props.style}>
-        <Card.Header className='d-flex justify-content-between'>
-          <div className='listingUserSmall text-primary my-auto'>{this.props.ride.user.name}</div>
-          <Button onClick={this.handleLikePress} size='sm' className='likeButton'>
-            {this.renderLikeButton()}
-          </Button>
+        <Card.Header>
+          <Row>
+            <Col>
+              <Row>
+                <Col className='listingUserSmall text-primary my-auto'>{this.props.ride.user.name}</Col>
+              </Row>
+              <Row>
+                <Col className='secondaryTextSmall text-secondary'>{this.dateString}</Col>
+              </Row>
+            </Col>
+            <Col md='auto' className='d-flex justify-content-end my-auto'>
+              <Button onClick={this.handleLikePress} size='sm' className='likeButton'>
+                {this.renderLikeButton()}
+              </Button>
+            </Col>
+          </Row>
+
         </Card.Header>
         <Container fluid className='p-3'>
           <Row>

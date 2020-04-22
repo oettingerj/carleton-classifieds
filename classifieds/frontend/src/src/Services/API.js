@@ -18,3 +18,5 @@ export default () => {
     getPosts
   }
 }
+
+export const GOOGLE_API_KEY = 'AIzaSyDQxf6bbw9DxeYDg40WN8PbDeQ-oF9SYiw'

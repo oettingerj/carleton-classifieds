@@ -1,6 +1,6 @@
 // @flow
 
-import { Row, Col, Card, Button, Container, Nav } from 'react-bootstrap'
+import { Row, Col, Card, Button, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import React, { Component } from 'react'
 import Ride from '../Components/Ride'
@@ -40,7 +40,7 @@ class Rides extends Component<Props> {
                 <Card>
                   <Card.Body>
                     <Card.Title> Need a Ride? </Card.Title>
-                    <Link to='/create_listing'>
+                    <Link to='/create_ride_request'>
                       <Button variant='primary'> Create New Ride Request </Button>
                     </Link>
                   </Card.Body>
