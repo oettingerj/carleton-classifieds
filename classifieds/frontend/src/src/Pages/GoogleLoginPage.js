@@ -30,7 +30,7 @@ class GoogleLoginPage extends Component<Props>{
                <GoogleLogin
                clientId="118120065426-b4m3d8qog18tvtct6p5atkg0249dmds5.apps.googleusercontent.com"
                buttonText="Sign in with Google"
-               onSuccess={this.modalOpen}
+               onSuccess={this.responsePass}
                onFailure={this.modalOpen}
                cookiePolicy={'single_host_origin'}
                style={{theme:'dark'}}
