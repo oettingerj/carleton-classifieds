@@ -38,9 +38,8 @@ class Home extends Component<Props> {
             <Row sm={4} className='mb-3'>
               <Col>
                 <Card>
-                  <Card.Header> Create Post </Card.Header>
                   <Card.Body>
-                    <Card.Title> Looking For Something? </Card.Title>
+                    <Card.Title> Something to offer? </Card.Title>
                     <Link to='/create_listing'>
                       <Button variant='primary'> Create New Listing </Button>
                     </Link>

@@ -33,7 +33,7 @@ class Rides extends Component<Props> {
         <Col>
           <Container fluid>
             <Row className='mt-3'>
-              <h2> Recent Posts </h2>
+              <h2> Upcoming Rides </h2>
             </Row>
             <Row sm={4} className='mb-3'>
               <Col>

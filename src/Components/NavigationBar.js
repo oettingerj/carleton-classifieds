@@ -16,6 +16,7 @@ export default class NavigationBar extends Component<Props> {
             <Nav.Link as={Link} to='/' href='/'>Listings</Nav.Link>
             <Nav.Link as={Link} to='/rides' href='/rides'>Rides</Nav.Link>
             <Nav.Link as={Link} to='/user' href='/user'>Your Items</Nav.Link>
+            <Nav.Link as={Link} to='/login' href='/login'>Login Test</Nav.Link>
           </Nav>
           <Form inline>
             <FormControl type='text' placeholder='Search' className='mr-sm-2' />
