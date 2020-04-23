@@ -19,6 +19,7 @@ export default class NavigationBar extends Component<Props> {
           <Nav>
             <Nav.Link as={Link} to='/'>Home</Nav.Link>
             <Nav.Link as={Link} to='/user'>Your Items</Nav.Link>
+            <Nav.Link as={Link} to='/logout'>Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

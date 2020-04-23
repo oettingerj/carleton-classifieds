@@ -1,6 +1,5 @@
-import { Nav, Container, Row, Col, Card, Form, Button, Image } from 'react-bootstrap'
+import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
 import React, { Component } from 'react'
-import Listing from '../Components/Listing'
 import SideBar from '../Components/SideBar'
 
 type Props = {
@@ -11,7 +10,6 @@ type Props = {
   price: number
 }
 
-const options = ['Clothing', 'Electronics', 'Books', 'Furniture', 'Homeware', 'Tools', 'Rides', 'Outdoor Gear', 'Toys', 'Miscellaneous','Tigers']
 
 export default class ViewListing extends Component<Props> {
   render(){
