@@ -1,6 +1,6 @@
 // @flow
 
-import { Row, Col, Card, Button, Container, Nav } from 'react-bootstrap'
+import { Row, Col, Card, Button, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import React, { Component } from 'react'
 import ListingComponent from '../Components/Listing'
