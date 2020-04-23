@@ -1,0 +1,23 @@
+.locationTitleSmall {
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.secondaryTextSmall {
+    font-size: 14px;
+}
+
+.listingUserSmall {
+    font-size: 16px;
+}
+
+.likeButton {
+    background-color: white;
+    border-color: lightgray;
+}
+
+.likeButton:hover {
+    background-color: lightgray;
+    border-color: darkgray;
+}

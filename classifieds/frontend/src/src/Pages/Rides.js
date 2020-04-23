@@ -3,22 +3,22 @@
 import { Row, Col, Card, Button, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import React, { Component } from 'react'
-import ListingComponent from '../Components/Listing'
+import Ride from '../Components/Ride'
 import SideBar from '../Components/SideBar'
 import ListingGrid from '../Components/ListingGrid'
-import type { ItemListing } from '../Config/Types'
+import type { RideListing } from '../Config/Types'
 import { connect } from 'react-redux'
 
 type Props = {
-  listings: ItemListing[]
+  rides: RideListing[]
 }
 
-class Home extends Component<Props> {
+class Rides extends Component<Props> {
   renderCards = () => {
     const items = []
-    for (const listing of this.props.listings) {
+    for (const ride of this.props.rides) {
       items.push(
-        <ListingComponent key={listing.id} user={listing.user} listing={listing} />
+        <Ride key={ride.id} user={ride.user} ride={ride} />
       )
     }
     return items
@@ -38,11 +38,10 @@ class Home extends Component<Props> {
             <Row sm={4} className='mb-3'>
               <Col>
                 <Card>
-                  <Card.Header> Create Post </Card.Header>
                   <Card.Body>
-                    <Card.Title> Looking For Something? </Card.Title>
-                    <Link to='/create_listing'>
-                      <Button variant='primary'> Create New Listing </Button>
+                    <Card.Title> Need a Ride? </Card.Title>
+                    <Link to='/create_ride_request'>
+                      <Button variant='primary'> Create New Ride Request </Button>
                     </Link>
                   </Card.Body>
                 </Card>
@@ -63,7 +62,7 @@ class Home extends Component<Props> {
 }
 
 const mapStateToProps = (state) => ({
-  listings: state.listings.listings
+  rides: state.listings.rides
 })
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(Rides)

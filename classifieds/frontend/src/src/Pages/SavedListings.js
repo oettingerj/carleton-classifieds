@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 import { Container } from 'react-bootstrap'
 import ListingComponent from '../Components/Listing'
 import ListingGrid from '../Components/ListingGrid'
-import type { Listing } from '../Config/Types'
+import type { ItemListing } from '../Config/Types'
 
 type Props = {
-  listings: Listing[],
+  listings: ItemListing[],
   dispatch?: ({}) => void
 }
 
@@ -18,7 +18,7 @@ class SavedListings extends Component<Props> {
 
     for (const listing of this.props.listings) {
       components.push(
-        <ListingComponent id={listing.id} img={listing.img} title={listing.title} user={listing.user} />
+        <ListingComponent key={listing.id} listing={listing} />
       )
     }
     return components

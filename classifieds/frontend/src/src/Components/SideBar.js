@@ -3,8 +3,9 @@
 import { Nav } from 'react-bootstrap'
 import React, { Component } from 'react'
 import './Styles/SideBar.css'
+import { Link } from 'react-router-dom'
 
-const pages = ['Clothing', 'Electronics', 'Books', 'Furniture', 'Homeware', 'Tools', 'Rides', 'Outdoor Gear', 'Toys', 'Miscellaneous', 'Tigers']
+const pages = ['Clothing', 'Electronics', 'Books', 'Furniture', 'Homeware', 'Tools', 'Outdoor Gear', 'Toys', 'Miscellaneous', 'Tigers']
 pages.sort()
 
 type Props = {
@@ -12,18 +13,14 @@ type Props = {
 }
 
 export default class SideBar extends Component<Props> {
-  buildNavItem = (title: string, url: string) => {
-    return (
-      <Nav.Item className='sidebarItem'>
-        <Nav.Link href={url}>{title}</Nav.Link>
-      </Nav.Item>
-    )
-  }
-
   renderNavItems = () => {
     const items = []
     for (const page of pages) {
-      items.push(this.buildNavItem(page, '#'))
+      items.push(
+        <Nav.Item key={page}>
+          <Nav.Link as={Link} to='#' href='#'>{page}</Nav.Link>
+        </Nav.Item>
+      )
     }
     return items
   }
