@@ -119,7 +119,7 @@ class CreateRideRequest extends Component<Props, State> {
     const ride: RideListing = {
       id: 51,
       user: this.props.user,
-      datetime: time,
+      datetime: time.toDate(),
       startLocation: values.pickup,
       endLocation: values.dropoff,
       passengers: values.passengers,
