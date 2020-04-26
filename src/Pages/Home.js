@@ -1,7 +1,6 @@
 // @flow
 
-import { Row, Col, Card, Button, Container } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Row, Col, Container } from 'react-bootstrap'
 import React, { Component } from 'react'
 import ListingComponent from '../Components/Listing'
 import SideBar from '../Components/SideBar'
@@ -17,6 +16,7 @@ class Home extends Component<Props> {
   renderCards = () => {
     const items = []
     for (const listing of this.props.listings) {
+      console.log(listing)
       items.push(
         <ListingComponent key={listing.id} user={listing.user} listing={listing} />
       )
@@ -27,25 +27,13 @@ class Home extends Component<Props> {
   render () {
     return (
       <Row>
-        <Col md='auto'>
+        <Col md={1}>
           <SideBar />
         </Col>
-        <Col>
+        <Col md={11}>
           <Container fluid>
-            <Row className='mt-3'>
+            <Row className='justify-content-md-center'>
               <h2> Recent Posts </h2>
-            </Row>
-            <Row sm={4} className='mb-3'>
-              <Col>
-                <Card>
-                  <Card.Body>
-                    <Card.Title> Something to offer? </Card.Title>
-                    <Link to='/create_listing'>
-                      <Button variant='primary'> Create New Listing </Button>
-                    </Link>
-                  </Card.Body>
-                </Card>
-              </Col>
             </Row>
             <Row className='mx-auto'>
               <Col>

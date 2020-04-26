@@ -1,5 +1,6 @@
 #sidebar {
     background-color: #f8f9fa;
-    width: 150px;
-    height: 100vh;
+    width: 130px;
+    height: 100%; /*looked it up online*/
+    position: fixed
 }

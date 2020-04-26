@@ -9,7 +9,7 @@ import { Formik } from 'formik'
 
 const formSchema = yup.object({
   title: yup.string().required(),
-  price: yup.number().required().min(0),
+  price: yup.number().required().min(0.0),
   item_type: yup.string().required(),
   description: yup.string().required(),
   img: yup.string()
@@ -17,7 +17,7 @@ const formSchema = yup.object({
 
 const initialFormValues = {
   title: "",
-  price: 0,
+  price: 0.0,
   item_type: [],
   description: "",
   image: ""
@@ -48,7 +48,6 @@ class CreateListing extends Component<Props> {
   }
 
   handleSubmit = (values: any) => {
-    console.log("hello")
     const listing: ItemListing = {
     id: 51,
     title: values.title,
@@ -61,6 +60,8 @@ class CreateListing extends Component<Props> {
 
     this.props.dispatch(ListingActions.saveListing(listing))
     this.setState({ showModal: true })
+
+    console.log(listing)
   }
 
   /* formik integration: https://react-bootstrap.github.io/components/forms/ */
@@ -99,6 +100,7 @@ class CreateListing extends Component<Props> {
               value={values.price}
               name='price'
               onChange={handleChange}
+              type="float"
               />
             </Form.Group>
           </Col>

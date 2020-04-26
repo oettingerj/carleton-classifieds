@@ -1,6 +1,6 @@
 // @flow
 
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
+import { Navbar, Nav, Form, FormControl, Button, NavDropdown } from 'react-bootstrap'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -9,13 +9,17 @@ type Props = {}
 export default class NavigationBar extends Component<Props> {
   render () {
     return (
-      <Navbar sticky='top' bg='light' expand='lg' className='pl-5 pr-5'>
-        <Navbar.Brand as={Link} to='/'>CC</Navbar.Brand>
+      <Navbar sticky='top' bg='light' expand='lg' className='pl-4 pr-3'>
+        <Navbar.Brand as={Link} to='/'> CC </Navbar.Brand>
         <Navbar.Collapse className='justify-content-between'>
           <Nav>
             <Nav.Link as={Link} to='/' href='/'>Listings</Nav.Link>
             <Nav.Link as={Link} to='/rides' href='/rides'>Rides</Nav.Link>
             <Nav.Link as={Link} to='/user' href='/user'>Your Items</Nav.Link>
+            <NavDropdown title="Create" id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to='/create_listing' href="/create_listing"> Create Listing </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to='/create_ride_request' href="/create_ride_request"> Create Ride Requests </NavDropdown.Item>
+            </NavDropdown>
             <Nav.Link as={Link} to='/login' href='/login'>Login Test</Nav.Link>
           </Nav>
           <Form inline>

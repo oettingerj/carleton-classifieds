@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import './Styles/SideBar.css'
 import { Link } from 'react-router-dom'
 
-const pages = ['Clothing', 'Electronics', 'Books', 'Furniture', 'Homeware', 'Tools', 'Outdoor Gear', 'Toys', 'Miscellaneous', 'Tigers']
+const pages = ['Clothing', 'Electronics', 'Books', 'Furniture', 'Homeware', 'Tools', 'Outdoor Gear', 'Toys', 'Miscellaneous']
 pages.sort()
 
 type Props = {
