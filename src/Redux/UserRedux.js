@@ -4,7 +4,8 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  setInfo: ['name', 'id', 'email']
+  setInfo: ['name', 'id', 'email'],
+  setLoggedIn: ['isLoggedIn']
 })
 
 export const ConfigTypes = Types
@@ -16,7 +17,9 @@ export const INITIAL_STATE = Immutable({
   name: 'Josh Oettinger',
   id: 'user1',
   email: 'oettingerj@carleton.edu',
-  listings: [{
+  isLoggedIn: true,
+  savedListings: ['1', '5', '7'],
+  ownListings: [{
     id: 'user1',
     title: 'Saucepan',
     user: 'Josh Oettinger',
@@ -28,8 +31,11 @@ export const INITIAL_STATE = Immutable({
 
 export const setInfo = (state, { name, id, email }) => state.merge({ name, id, email })
 
+export const setLoggedIn = (state, { isLoggedIn }) => state.merge({ isLoggedIn })
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.SET_INFO]: setInfo
+  [Types.SET_INFO]: setInfo,
+  [Types.SET_LOGGED_IN]: setLoggedIn
 })

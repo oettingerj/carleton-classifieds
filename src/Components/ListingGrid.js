@@ -15,26 +15,26 @@ export default class ListingGrid extends Component<Props> {
     let index = 0
 
     while (index < this.props.children.length) {
-      grid.push(this.renderRow(this.props.children.slice(index, index + this.props.listingsPerRow)))
+      grid.push(this.renderRow(this.props.children.slice(index, index + this.props.listingsPerRow), index))
       index += this.props.listingsPerRow
     }
 
     return grid
   }
 
-  renderRow = (children: Node[]) => {
+  renderRow = (children: Node[], rowIndex: number) => {
     const cols = []
 
     for (const child of children) {
       cols.push(
-        <Col>
+        <Col key={child.key}>
           {child}
         </Col>
       )
     }
 
     return (
-      <Row className='p-3'>
+      <Row key={rowIndex} className='p-3'>
         {cols}
       </Row>
     )

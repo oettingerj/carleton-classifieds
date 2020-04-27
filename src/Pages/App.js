@@ -1,12 +1,9 @@
 // @flow
 
-import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { Provider } from 'react-redux'
-import createStore from '../Redux'
+import React, { Component } from 'react'
 import { Container } from 'react-bootstrap'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import GoogleLoginPage from './GoogleLoginPage'
+import { Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
 import Account from './Account'
 import ViewRide from './ViewRide'
 import Rides from './Rides'
@@ -15,29 +12,49 @@ import CreateListing from './CreateListing'
 import CreateRideRequest from './CreateRideRequest'
 import Home from './Home'
 import NavBar from '../Components/NavigationBar'
+import ProtectedRoute from '../Components/ProtectedRoute'
+import UserActions from '../Redux/UserRedux'
 
-const store = createStore()
-
-function App () {
-  return (
-    <Provider store={store}>
-      <Router>
-        <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }}>
-          <NavBar fixed='top' />
-          <Switch>
-            <Route path='/user' component={Account} />
-            <Route path='/rides/:id' component={ViewRide} />
-            <Route path='/rides' component={Rides} />
-            <Route path='/listing/:id' component={ViewListing} />
-            <Route path='/create_listing' component={CreateListing} />
-            <Route path='/create_ride_request' component={CreateRideRequest} />
-            <Route path='/login' component={GoogleLoginPage} />
-            <Route path='/' component={Home} />
-          </Switch>
-        </Container>
-      </Router>
-    </Provider>
-  )
+type Props = {
+  dispatch: ({}) => void
 }
 
-export default App
+class App extends Component<Props> {
+  logout = () => {
+    console.log('logged out')
+    this.props.dispatch(UserActions.setLoggedIn(false))
+  }
+
+  render () {
+    return (
+      <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }}>
+        <NavBar logoutFn={this.logout} fixed='top' />
+        <Switch>
+          <ProtectedRoute path='/user'>
+            <Account />
+          </ProtectedRoute>
+          <ProtectedRoute path='/rides/:id'>
+            <ViewRide />
+          </ProtectedRoute>
+          <ProtectedRoute path='/rides'>
+            <Rides />
+          </ProtectedRoute>
+          <ProtectedRoute path='/listing/:id'>
+            <ViewListing />
+          </ProtectedRoute>
+          <ProtectedRoute path='/create_listing'>
+            <CreateListing />
+          </ProtectedRoute>
+          <ProtectedRoute path='/create_ride_request'>
+            <CreateRideRequest />
+          </ProtectedRoute>
+          <ProtectedRoute path='/'>
+            <Home />
+          </ProtectedRoute>
+        </Switch>
+      </Container>
+    )
+  }
+}
+
+export default connect()(App)
