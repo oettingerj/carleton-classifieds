@@ -1,10 +1,12 @@
 import GoogleLogin from 'react-google-login'
 import React, { Component } from 'react'
 import { Card, Modal, Button } from 'react-bootstrap'
-import '../Components/Styles/Login.css'
+import './Styles/Login.css'
+import { connect } from 'react-redux'
+import UserActions from '../Redux/UserRedux'
 
 type Props = {
-
+  dispatch: ({}) => void
 }
 type State = {
   show: boolean
@@ -19,7 +21,8 @@ class GoogleLoginPage extends Component<Props, State> {
   }
 
   responsePass = (response) => {
-    this.props.history.push('/home')
+    this.props.dispatch(UserActions.setLoggedIn(true))
+    this.props.history.push('/')
   }
 
   modalClose = () => {
@@ -32,7 +35,7 @@ class GoogleLoginPage extends Component<Props, State> {
 
   render () {
     return (
-      <body className='login-background'>
+      <div className='login-background'>
         <div className='centered'>
           <h2> Carleton Classifieds </h2>
           <Card style={{ width: '18rem' }}>
@@ -57,12 +60,12 @@ class GoogleLoginPage extends Component<Props, State> {
             </Modal.Footer>
           </Modal>
         </div>
-      </body>
+      </div>
     )
   }
 }
 
-export default GoogleLoginPage
+export default connect()(GoogleLoginPage)
 
 /*
 Google Log in: https://www.npmjs.com/package/react-google-login

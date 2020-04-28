@@ -155,7 +155,7 @@ class ViewRide extends Component<Props> {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const id = parseInt(ownProps.match.params.id)
+  const id = ownProps.match.params.id
   for (const rideListing of state.listings.rides) {
     if (rideListing.id === id) {
       return {

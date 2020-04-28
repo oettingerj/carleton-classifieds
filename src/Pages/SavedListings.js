@@ -39,7 +39,9 @@ class SavedListings extends Component<Props> {
 }
 
 const mapStateToProps = (state) => ({
-  listings: state.listings.savedListings
+  listings: state.listings.listings.filter((listing) =>
+    state.user.savedListings.includes(listing.id)
+  )
 })
 
 export default connect(mapStateToProps)(SavedListings)

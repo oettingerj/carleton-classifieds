@@ -4,10 +4,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container } from 'react-bootstrap'
 import ListingComponent from '../Components/UserListing'
-import type { Listing } from '../Config/Types'
+import type { ItemListing } from '../Config/Types'
 
 type Props = {
-  listings: Listing[],
+  listings: ItemListing[],
   dispatch?: ({}) => void
 }
 
@@ -38,7 +38,7 @@ class UserListings extends Component<Props> {
 }
 
 const mapStateToProps = (state) => ({
-  listings: state.user.listings
+  listings: state.user.ownListings
 })
 
 export default connect(mapStateToProps)(UserListings)

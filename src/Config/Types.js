@@ -8,7 +8,8 @@ export type User = {
 }
 
 export type ItemListing = {
-  id: string | number,
+  id: string,
+  created: Date,
   title: string,
   description: string,
   user: User,
@@ -25,7 +26,8 @@ export type Location = {
 }
 
 export type RideListing = {
-  id: string | number,
+  id: string,
+  created: Date,
   user: User,
   datetime: Date,
   startLocation: Location,

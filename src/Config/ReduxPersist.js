@@ -11,7 +11,7 @@ const REDUX_PERSIST = {
     // blacklist: [],
     // Optionally, just specify the keys you DO want stored to persistence.
     // An empty array means 'don't store any reducers'
-    whitelist: [],
+    whitelist: ['user'],
     transforms: [immutablePersistenceTransform]
   }
 }
