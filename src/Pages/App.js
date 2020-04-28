@@ -18,7 +18,7 @@ import NavBar from '../Components/NavigationBar'
 
 const store = createStore()
 
-function App () {
+function App (){
   return (
     <Provider store={store}>
       <Router>

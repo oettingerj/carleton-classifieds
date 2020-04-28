@@ -76,7 +76,7 @@ class CreateListing extends Component<Props> {
     setFieldValue
   }: any) => {
     return (
-      <Form noValidate onSubmit={handleSubmit}>>
+      <Form noValidate onSubmit={handleSubmit}>
         <Row>
           <Col md={6}>
             <Form.Group controlId='1'>
@@ -169,19 +169,21 @@ class CreateListing extends Component<Props> {
   render () {
     return (
       <Row>
-        <Col md='auto'>
+        <Col md={1}>
           <SideBar />
         </Col>
-        <Container className='mx-auto mt-3'>
-          <Card>
-            <Card.Body>
-              <Card.Title> Create Listing </Card.Title>
-              <Formik onSubmit={this.handleSubmit} validationSchema={formSchema} initialValues={initialFormValues}>
-                {this.renderForm}
-              </Formik>
-            </Card.Body>
-          </Card>
-        </Container>
+        <Col md={11}>
+          <Container className='mx-auto mt-3'>
+            <Card>
+              <Card.Body>
+                <Card.Title> Create Listing </Card.Title>
+                <Formik onSubmit={this.handleSubmit} validationSchema={formSchema} initialValues={initialFormValues}>
+                  {this.renderForm}
+                </Formik>
+              </Card.Body>
+            </Card>
+          </Container>
+        </Col>
         <Modal centered show={this.state.showModal}>
           <Modal.Header>Your listing has been submitted!</Modal.Header>
           <Modal.Footer>

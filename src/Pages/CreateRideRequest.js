@@ -220,19 +220,21 @@ class CreateRideRequest extends Component<Props, State> {
   render () {
     return (
       <Row>
-        <Col md='auto'>
+        <Col md={1}>
           <SideBar />
         </Col>
-        <Container className='mx-auto mt-3'>
-          <Card>
-            <Card.Body>
-              <Card.Title> New Ride Request </Card.Title>
-              <Formik onSubmit={this.handleSubmit} validationSchema={formSchema} initialValues={initialFormValues}>
-                {this.renderForm}
-              </Formik>
-            </Card.Body>
-          </Card>
-        </Container>
+        <Col md = {11}>
+          <Container className='mx-auto mt-3'>
+            <Card>
+              <Card.Body>
+                <Card.Title> New Ride Request </Card.Title>
+                <Formik onSubmit={this.handleSubmit} validationSchema={formSchema} initialValues={initialFormValues}>
+                  {this.renderForm}
+                </Formik>
+              </Card.Body>
+            </Card>
+          </Container>
+        </Col>
         <Modal centered show={this.state.showModal}>
           <Modal.Header>Your ride request has been submitted!</Modal.Header>
           <Modal.Footer>

@@ -17,9 +17,9 @@ class GoogleLoginPage extends Component<Props, State> {
       show: false
     }
   }
-  
+
   responsePass = (response) => {
-    this.props.history.push('/')
+    this.props.history.push('/home')
   }
 
   modalClose = () => {

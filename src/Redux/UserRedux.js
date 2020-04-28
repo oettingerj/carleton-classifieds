@@ -21,7 +21,8 @@ export const INITIAL_STATE = Immutable({
     title: 'Saucepan',
     user: 'Josh Oettinger',
     img: 'https://www.ikea.com/us/en/images/products/oumbaerlig-saucepan-with-lid__0712841_PE729104_S5.JPG'
-  }]
+  }],
+  rides: []
 })
 
 /* ------------- Reducers ------------- */
