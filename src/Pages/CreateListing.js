@@ -60,7 +60,6 @@ class CreateListing extends Component<Props> {
 
     this.props.dispatch(ListingActions.saveListing(listing))
     this.setState({ showModal: true })
-
     console.log(listing)
   }
 

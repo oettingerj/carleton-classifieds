@@ -12,15 +12,17 @@ type Props = {
 }
 
 class ProtectedRoute extends Component<Props> {
-  renderRoute = ({ location }) => {
-    console.log(this.props.isLoggedIn)
+  renderRoute = (props) => {
+    const children = React.Children.map(this.props.children, (child) => {
+      return React.cloneElement(child, { ...props })
+    })
     if (this.props.isLoggedIn) {
-      return this.props.children
+      return children
     } else {
       return (
         <Redirect to={{
           pathname: '/login',
-          state: { from: location }
+          state: { from: props.location }
         }}
         />
       )

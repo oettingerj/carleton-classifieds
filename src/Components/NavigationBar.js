@@ -19,6 +19,10 @@ export default class NavigationBar extends Component<Props> {
           <Nav>
             <Nav.Link as={Link} to='/' href='/'>Listings</Nav.Link>
             <Nav.Link as={Link} to='/rides' href='/rides'>Rides</Nav.Link>
+            <NavDropdown title="Create" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/create_listing">Create Listing</NavDropdown.Item>
+              <NavDropdown.Item href="/create_ride_request">Create Rides</NavDropdown.Item>
+            </NavDropdown>
             <Nav.Link as={Link} to='/user' href='/user'>Your Items</Nav.Link>
           </Nav>
           <div className='d-flex flex-row'>
