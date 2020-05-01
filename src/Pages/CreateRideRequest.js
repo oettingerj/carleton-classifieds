@@ -105,19 +105,23 @@ class CreateRideRequest extends Component<Props, State> {
   handlePlaceSelect = (fieldName: 'pickup' | 'dropoff') => {
     const autocomplete = fieldName === 'pickup' ? this.pickupAutocomplete : this.dropoffAutocomplete
     const place = autocomplete.getPlace()
-    this.setFieldValue(fieldName, {
-      name: place.name,
-      address: place.formatted_address,
-      latitude: place.geometry.location.lat(),
-      longitude: place.geometry.location.lng()
-    })
+    if (place.geometry) {
+      this.setFieldValue(fieldName, {
+        name: place.name,
+        address: place.formatted_address,
+        latitude: place.geometry.location.lat(),
+        longitude: place.geometry.location.lng()
+      })
+    }
   }
+
 
   handleSubmit = (values: any) => {
     const time = moment(values.datetime)
     if (values.ampm === 'PM') time.add(12, 'hours')
     const ride: RideListing = {
-      id: 51,
+      id: '51',
+      created: new Date(),
       user: this.props.user,
       datetime: time.toDate(),
       startLocation: values.pickup,

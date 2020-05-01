@@ -25,7 +25,6 @@ class Home extends Component<Props> {
   }
 
   render () {
-    console.log(this.props.isLoggedIn)
     return (
       <Row>
         <Col md='auto'>
@@ -63,8 +62,7 @@ class Home extends Component<Props> {
 }
 
 const mapStateToProps = (state) => ({
-  listings: state.listings.listings,
-  isLoggedIn: state.user.isLoggedIn
+  listings: state.listings.listings
 })
 
 export default connect(mapStateToProps)(Home)
