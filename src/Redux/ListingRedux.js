@@ -23,7 +23,7 @@ export const INITIAL_STATE = Immutable({
 /* ------------- Reducers ------------- */
 
 export const saveListing = (state, { item }) => state.merge({
-  savedListings: state.savedListings.concat(item)
+  listings: state.listings.concat(item)
 })
 
 export const createRideRequest = (state, { ride }) => state.merge({
