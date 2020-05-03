@@ -115,7 +115,6 @@ class CreateRideRequest extends Component<Props, State> {
     }
   }
 
-
   handleSubmit = (values: any) => {
     const time = moment(values.datetime)
     if (values.ampm === 'PM') time.add(12, 'hours')
