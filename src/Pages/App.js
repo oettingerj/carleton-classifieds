@@ -1,5 +1,4 @@
 // @flow
-
 import React, { Component } from 'react'
 import { Container } from 'react-bootstrap'
 import { Switch } from 'react-router-dom'
@@ -12,7 +11,7 @@ import CreateListing from './CreateListing'
 import CreateRideRequest from './CreateRideRequest'
 import Home from './Home'
 import NavBar from '../Components/NavigationBar'
-import ProtectedRoute from '../Components/ProtectedRoute'
+import Route from '../Components/ProtectedRoute'
 import UserActions from '../Redux/UserRedux'
 
 type Props = {
@@ -30,27 +29,27 @@ class App extends Component<Props> {
       <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }}>
         <NavBar logoutFn={this.logout} fixed='top' />
         <Switch>
-          <ProtectedRoute path='/user'>
+          <Route path='/user'>
             <Account />
-          </ProtectedRoute>
-          <ProtectedRoute path='/rides/:id'>
+          </Route>
+          <Route path='/rides/:id'>
             <ViewRide />
-          </ProtectedRoute>
-          <ProtectedRoute path='/rides'>
+          </Route>
+          <Route path='/rides'>
             <Rides />
-          </ProtectedRoute>
-          <ProtectedRoute path='/listing/:id'>
+          </Route>
+          <Route path='/listing/:id'>
             <ViewListing />
-          </ProtectedRoute>
-          <ProtectedRoute path='/create_listing'>
+          </Route>
+          <Route path='/create_listing'>
             <CreateListing />
-          </ProtectedRoute>
-          <ProtectedRoute path='/create_ride_request'>
+          </Route>
+          <Route path='/create_ride_request'>
             <CreateRideRequest />
-          </ProtectedRoute>
-          <ProtectedRoute path='/'>
+          </Route>
+          <Route path='/'>
             <Home />
-          </ProtectedRoute>
+          </Route>
         </Switch>
       </Container>
     )
