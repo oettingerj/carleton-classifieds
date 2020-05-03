@@ -1,6 +1,7 @@
+
 // @flow
 
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
+import { Navbar, Nav, Form, FormControl, Button, NavDropdown } from 'react-bootstrap'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -13,13 +14,19 @@ export default class NavigationBar extends Component<Props> {
 
   render () {
     return (
-      <Navbar sticky='top' bg='light' expand='lg' className='pl-5 pr-5'>
+      <Navbar sticky='top' bg='light' expand='lg' className='pl-4 pr-3'>
         <Navbar.Brand as={Link} to='/'>CC</Navbar.Brand>
         <Navbar.Collapse className='justify-content-between'>
           <Nav>
             <Nav.Link as={Link} to='/' href='/'>Listings</Nav.Link>
             <Nav.Link as={Link} to='/rides' href='/rides'>Rides</Nav.Link>
             <Nav.Link as={Link} to='/user' href='/user'>Your Items</Nav.Link>
+            <NavDropdown title="Create" id="basic-nav-dropdown">
+            <p>
+              <Link to='/create_listing'> Create Listing </Link> <br/>
+              <Link to='/create_ride_request'> Create Ride </Link> <br/>
+            </p>
+            </NavDropdown>
           </Nav>
           <div className='d-flex flex-row'>
             <Form inline>

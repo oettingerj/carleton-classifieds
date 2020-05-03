@@ -1,7 +1,6 @@
 // @flow
 
-import { Row, Col, Card, Button, Container } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Row, Col, Container } from 'react-bootstrap'
 import React, { Component } from 'react'
 import Ride from '../Components/Ride'
 import SideBar from '../Components/SideBar'
@@ -32,21 +31,9 @@ class Rides extends Component<Props> {
         </Col>
         <Col>
           <Container fluid>
-            <Row className='mt-3'>
-              <h2> Upcoming Rides </h2>
-            </Row>
-            <Row sm={4} className='mb-3'>
-              <Col>
-                <Card>
-                  <Card.Body>
-                    <Card.Title> Need a Ride? </Card.Title>
-                    <Link to='/create_ride_request'>
-                      <Button variant='primary'> Create New Ride Request </Button>
-                    </Link>
-                  </Card.Body>
-                </Card>
-              </Col>
-            </Row>
+          <Row className='justify-content-md-center'>
+            <h2> Upcoming Rides </h2>
+          </Row>
             <Row className='mx-auto'>
               <Col>
                 <ListingGrid listingsPerRow={4}>

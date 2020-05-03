@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import SideBar from '../Components/SideBar'
 import * as yup from 'yup'
 import ListingActions from '../Redux/ListingRedux'
+import UserActions from '../Redux/UserRedux'
 import type { ItemListing, User } from '../Config/Types'
 import { connect } from 'react-redux'
 import { Formik } from 'formik'
@@ -31,7 +32,7 @@ type State = {
 class CreateListing extends Component<Props, State> {
   handleModalClose = () => {
     this.setState({ showModal: false })
-    this.props.history.goBack()
+    this.props.history.push('/')
   }
 
   constructor (props: Props) {
@@ -43,7 +44,7 @@ class CreateListing extends Component<Props, State> {
 
   handleSubmit = (values: any) => {
     const listing: ItemListing = {
-      id: 51,
+      id: "51",
       title: values.title,
       description: values.description,
       user: this.props.user,
@@ -52,8 +53,8 @@ class CreateListing extends Component<Props, State> {
       sold: false
     }
     this.props.dispatch(ListingActions.saveListing(listing))
+    this.props.dispatch(UserActions.saveOwnListings(listing))
     this.setState({ showModal: true })
-    console.log(listing)
   }
 
   /* formik integration: https://react-bootstrap.github.io/components/forms/ */

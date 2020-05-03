@@ -135,7 +135,7 @@ class CreateRideRequest extends Component<Props, State> {
 
   handleModalClose = () => {
     this.setState({ showModal: false })
-    this.props.history.goBack()
+    this.props.history.push('/rides')
   }
 
   renderForm = ({
