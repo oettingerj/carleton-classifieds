@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container, Tab, Tabs } from 'react-bootstrap'
 import UserListings from './UserListings'
+import UserRides from './UserRides'
+import Home from './Home'
 import SavedItems from './SavedListings'
 
 type Props = {
@@ -23,6 +25,7 @@ class Account extends Component<Props> {
           <Tab title='Your Listings' eventKey='listings'>
             <Container className='mt-4'>
               <UserListings />
+              <UserRides />
             </Container>
           </Tab>
         </Tabs>
