@@ -4,8 +4,14 @@ import React, { Component } from 'react'
 import { Card, Button, Row, Col, Image, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io'
-import type { ItemListing } from '../Config/Types'
+import UserActions from '../Redux/UserRedux'
 import './Styles/Listing.css'
+import { connect } from 'react-redux'
+import SideBar from '../Components/SideBar'
+import * as yup from 'yup'
+import ListingActions from '../Redux/ListingRedux'
+import type { ItemListing, User } from '../Config/Types'
+import { Formik } from 'formik'
 
 type Props = {
   listing: ItemListing,
@@ -15,7 +21,7 @@ type State = {
   liked: boolean
 }
 
-export default class ListingComponent extends Component<Props, State> {
+class ListingComponent extends Component<Props, State> {
   constructor (props: Props) {
     super(props)
     this.state = {
@@ -31,6 +37,7 @@ export default class ListingComponent extends Component<Props, State> {
 
   renderLikeButton = () => {
     if (this.state.liked) {
+      this.props.dispatch(UserActions.saveListings(this.props.listing.id))
       return (
         <IoIosHeart color='red' size={20} />
       )
@@ -77,3 +84,13 @@ export default class ListingComponent extends Component<Props, State> {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  user: {
+    name: state.user.name,
+    id: state.user.id,
+    email: state.user.email
+  }
+})
+
+export default connect(mapStateToProps)(ListingComponent)

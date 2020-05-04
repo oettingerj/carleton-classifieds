@@ -8,6 +8,7 @@ import * as yup from 'yup'
 import { Formik } from 'formik'
 import { connect } from 'react-redux'
 import ListingActions from '../Redux/ListingRedux'
+import UserActions from '../Redux/UserRedux'
 import type { RideListing, User } from '../Config/Types'
 import moment from 'moment'
 
@@ -130,6 +131,7 @@ class CreateRideRequest extends Component<Props, State> {
     }
 
     this.props.dispatch(ListingActions.createRideRequest(ride))
+    this.props.dispatch(UserActions.saveOwnRides(ride))
     this.setState({ showModal: true })
   }
 

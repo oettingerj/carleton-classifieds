@@ -8,8 +8,6 @@ import type { RideListing } from '../Config/Types'
 
 type Props = {
   rides: RideListing[],
-  dispatch?: ({}) => void
-
 }
 
 class UserRides extends Component<Props> {
@@ -22,7 +20,7 @@ class UserRides extends Component<Props> {
     for (const ride of this.props.rides) {
       components.push(
         <UserRideComponent id={ride.id} img={'https://www.freepnglogos.com/uploads/pin-png/location-pin-connectsafely-37.png'}
-        startLocation={ride.startLocation.name} endLocation={ride.endLocation.name}/>
+        />
       )
     }
     return components
@@ -43,7 +41,7 @@ class UserRides extends Component<Props> {
 }
 
 const mapStateToProps = (state) => ({
-  rides: state.user.ownRides
+  rides: state.user.ownListings
 })
 
 export default connect(mapStateToProps)(UserRides)

@@ -7,6 +7,7 @@ import UserActions from '../Redux/UserRedux'
 import type { ItemListing, User } from '../Config/Types'
 import { connect } from 'react-redux'
 import { Formik } from 'formik'
+
 const formSchema = yup.object({
   title: yup.string().required(),
   price: yup.number().required().min(0.0),
@@ -42,9 +43,17 @@ class CreateListing extends Component<Props, State> {
     }
   }
 
+   generateRandomID = () => {
+    const id = Math.random()
+    return id.toString()
+  }
+
   handleSubmit = (values: any) => {
+    const id_string = this.generateRandomID()
+    console.log(id_string)
+
     const listing: ItemListing = {
-      id: "51",
+      id: id_string,
       title: values.title,
       description: values.description,
       user: this.props.user,
