@@ -5,8 +5,10 @@ import { Card, Button, Row, Col, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io'
 import type { RideListing } from '../Config/Types'
+import UserActions from '../Redux/UserRedux'
 import moment from 'moment'
 import './Styles/Ride.css'
+import { connect } from 'react-redux'
 
 type Props = {
   ride: RideListing,
@@ -16,7 +18,7 @@ type State = {
   liked: boolean
 }
 
-export default class ListingComponent extends Component<Props, State> {
+class RideComponent extends Component<Props, State> {
   dateString: string
 
   constructor (props: Props) {
@@ -47,6 +49,7 @@ export default class ListingComponent extends Component<Props, State> {
 
   renderLikeButton = () => {
     if (this.state.liked) {
+      this.props.dispatch(UserActions.saveListings(this.props.listing.id))
       return (
         <IoIosHeart color='red' size={20} />
       )
@@ -112,3 +115,13 @@ export default class ListingComponent extends Component<Props, State> {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  user: {
+    name: state.user.name,
+    id: state.user.id,
+    email: state.user.email
+  }
+})
+
+export default connect(mapStateToProps)(RideComponent)

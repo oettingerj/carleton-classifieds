@@ -34,6 +34,7 @@ export default class UserRide extends Component<Props> {
               <Row>
                 <Col md={8}>
                   <Button className='mt-3' variant='outline-primary'>View/Edit Listing</Button>
+                  <Button className='mt-3 ml-2' variant='outline-primary'>Delete Listing</Button>
                 </Col>
               </Row>
             </Col>

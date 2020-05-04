@@ -3,7 +3,7 @@ import immutablePersistenceTransform from '../Services/ImmutablePersistenceTrans
 
 const REDUX_PERSIST = {
   active: true,
-  reducerVersion: '0.1',
+  reducerVersion: '0.2',
   storeConfig: {
     key: 'primary',
     storage,
@@ -11,7 +11,7 @@ const REDUX_PERSIST = {
     // blacklist: [],
     // Optionally, just specify the keys you DO want stored to persistence.
     // An empty array means 'don't store any reducers'
-    whitelist: ['user'],
+    whitelist: [],
     transforms: [immutablePersistenceTransform]
   }
 }

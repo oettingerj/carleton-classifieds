@@ -3,22 +3,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container } from 'react-bootstrap'
-import ListingComponent from '../Components/Listing'
+import RideComponent from '../Components/Ride'
 import ListingGrid from '../Components/ListingGrid'
-import type { ItemListing } from '../Config/Types'
+import type { RideListing } from '../Config/Types'
 
 type Props = {
-  listings: ItemListing[],
+  rides: RideListing[],
   dispatch?: ({}) => void
 }
 
-class SavedListings extends Component<Props> {
+class SavedRides extends Component<Props> {
   renderListings = () => {
+    console.log(this.props.rides)
     const components = []
-
-    for (const listing of this.props.listings) {
+    for (const ride of this.props.rides) {
       components.push(
-        <ListingComponent key={listing.id} listing={listing} />
+        <RideComponent key={ride.id} ride={ride} />
       )
     }
     return components
@@ -28,7 +28,7 @@ class SavedListings extends Component<Props> {
     return (
       <Container>
         <header>
-          <h2>Saved Listings</h2>
+          <h2>Saved Rides</h2>
         </header>
         <ListingGrid listingsPerRow={4}>
           {this.renderListings()}
@@ -39,9 +39,9 @@ class SavedListings extends Component<Props> {
 }
 
 const mapStateToProps = (state) => ({
-  listings: state.listings.listings.filter((listing) =>
-    state.user.savedListings.includes(listing.id)
+  rides: state.listings.rides.filter((rides) =>
+    state.user.savedRides.includes(rides.id)
   )
 })
 
-export default connect(mapStateToProps)(SavedListings)
+export default connect(mapStateToProps)(SavedRides)

@@ -7,6 +7,7 @@ import UserListings from './UserListings'
 import UserRides from './UserRides'
 import Home from './Home'
 import SavedItems from './SavedListings'
+import SavedRides from './SavedRides'
 
 type Props = {
 
@@ -20,6 +21,7 @@ class Account extends Component<Props> {
           <Tab title='Saved Items' eventKey='items'>
             <Container className='mt-4'>
               <SavedItems />
+              <SavedRides />
             </Container>
           </Tab>
           <Tab title='Your Listings' eventKey='listings'>

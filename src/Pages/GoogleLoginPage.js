@@ -48,17 +48,6 @@ class GoogleLoginPage extends Component<Props, State> {
               style={{ theme: 'dark' }}
             />
           </Card>
-          <Modal show={this.show} onHide={this.modalClose} animation={false}>
-            <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-            <Modal.Footer>
-              <Button variant='secondary' onClick={this.modalClose}>
-                Close
-              </Button>
-            </Modal.Footer>
-          </Modal>
         </div>
       </div>
     )

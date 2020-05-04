@@ -15,13 +15,17 @@ import { Formik } from 'formik'
 
 type Props = {
   listing: ItemListing,
-  style?: {}
+  style?: {},
+  liked?: boolean
 }
 type State = {
   liked: boolean
 }
 
 class ListingComponent extends Component<Props, State> {
+  static defaultProps = {
+    liked: false 
+  }
   constructor (props: Props) {
     super(props)
     this.state = {
@@ -30,6 +34,7 @@ class ListingComponent extends Component<Props, State> {
   }
 
   handleLikePress = () => {
+    this.props.dispatch(UserActions.saveListings(this.props.listing.id))
     this.setState({
       liked: !this.state.liked
     })
@@ -37,7 +42,6 @@ class ListingComponent extends Component<Props, State> {
 
   renderLikeButton = () => {
     if (this.state.liked) {
-      this.props.dispatch(UserActions.saveListings(this.props.listing.id))
       return (
         <IoIosHeart color='red' size={20} />
       )

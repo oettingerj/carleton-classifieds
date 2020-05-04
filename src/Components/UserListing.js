@@ -32,8 +32,9 @@ export default class Listing extends Component<Props> {
                 </Col>
               </Row>
               <Row>
-                <Col md={8}>
+                <Col md={6}>
                   <Button className='mt-3' variant='outline-primary'>View/Edit Listing</Button>
+                  <Button className='mt-3 ml-2' variant='outline-primary'>Delete Listing</Button>
                 </Col>
               </Row>
             </Col>

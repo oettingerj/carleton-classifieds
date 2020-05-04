@@ -13,14 +13,10 @@ type Props = {
 class UserRides extends Component<Props> {
   renderListings = () => {
     const components = []
-
-    console.log("hello")
-    console.log(this.props.rides)
-
     for (const ride of this.props.rides) {
       components.push(
         <UserRideComponent id={ride.id} img={'https://www.freepnglogos.com/uploads/pin-png/location-pin-connectsafely-37.png'}
-        />
+         startLocation={ride.startLocation.name} endLocation={ride.endLocation.name}/>
       )
     }
     return components
@@ -41,7 +37,7 @@ class UserRides extends Component<Props> {
 }
 
 const mapStateToProps = (state) => ({
-  rides: state.user.ownListings
+  rides: state.user.ownRides
 })
 
 export default connect(mapStateToProps)(UserRides)

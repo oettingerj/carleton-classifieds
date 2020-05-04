@@ -6,8 +6,8 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   setInfo: ['name', 'id', 'email'],
   setLoggedIn: ['isLoggedIn'],
-  saveOwnListings: ['save_listing'],
-  saveOwnRides: ['save_ride'],
+  saveOwnListings: ['ownListings'],
+  saveOwnRides: ['ownRides'],
   saveListings: ['saving_listing'],
   saveRides: ['saving_ride']
 })
@@ -23,17 +23,21 @@ export const INITIAL_STATE = Immutable({
   email: 'oettingerj@carleton.edu',
   isLoggedIn: true,
   savedListings: ['1', '5', '7'],
-  savedRides:[],
-  ownRides: [{
-    id: 'user1',
-    startLocation:{name : "MSP Airport"},
-    endLocation: {name: "Carleton College"}
-  }],
+  savedRides:['5','6','7'],
   ownListings: [{
     id: 'user1',
     title: 'Saucepan',
     user: 'Josh Oettinger',
     img: 'https://www.ikea.com/us/en/images/products/oumbaerlig-saucepan-with-lid__0712841_PE729104_S5.JPG'
+  }],
+  ownRides: [{
+    id: 'user1',
+    startLocation: {
+      name: 'MSP Airport'
+    },
+    endLocation: {
+      name: 'Carleton College'
+    },
   }],
 })
 
@@ -43,12 +47,12 @@ export const setInfo = (state, { name, id, email }) => state.merge({ name, id, e
 
 export const setLoggedIn = (state, { isLoggedIn }) => state.merge({ isLoggedIn })
 
-export const saveOwnListings = (state, { save_listing }) => state.merge({
-  ownListings: state.ownListings.concat(save_listing)
+export const saveOwnListings = (state, { ownListings }) => state.merge({
+  ownListings: state.ownListings.concat(ownListings)
 })
 
-export const saveOwnRides = (state, { save_ride }) => state.merge({
-  ownRides: state.ownRides.concat(save_ride)
+export const saveOwnRides = (state, { ownRides }) => state.merge({
+  ownRides: state.ownRides.concat(ownRides)
 })
 
 export const saveListings = (state, { saving_listing }) => state.merge({
