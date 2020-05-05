@@ -7,25 +7,15 @@ import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io'
 import UserActions from '../Redux/UserRedux'
 import './Styles/Listing.css'
 import { connect } from 'react-redux'
-import SideBar from '../Components/SideBar'
-import * as yup from 'yup'
-import ListingActions from '../Redux/ListingRedux'
-import type { ItemListing, User } from '../Config/Types'
-import { Formik } from 'formik'
+
 
 type Props = {
   listing: ItemListing,
   style?: {},
-  liked?: boolean
-}
-type State = {
-  liked: boolean
 }
 
 class ListingComponent extends Component<Props, State> {
-  static defaultProps = {
-    liked: false 
-  }
+
   constructor (props: Props) {
     super(props)
     this.state = {
@@ -34,10 +24,17 @@ class ListingComponent extends Component<Props, State> {
   }
 
   handleLikePress = () => {
-    this.props.dispatch(UserActions.saveListings(this.props.listing.id))
-    this.setState({
-      liked: !this.state.liked
+    if (this.state.liked == false){
+      this.setState({
+      liked: true
     })
+      this.props.dispatch(UserActions.saveListings(this.props.listing.id))
+    }
+    if (this.state.liked == true){
+      this.setState({
+      liked: false
+    })
+    }
   }
 
   renderLikeButton = () => {

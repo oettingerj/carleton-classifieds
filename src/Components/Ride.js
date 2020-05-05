@@ -42,14 +42,21 @@ class RideComponent extends Component<Props, State> {
   }
 
   handleLikePress = () => {
-    this.setState({
-      liked: !this.state.liked
-    })
+    if (this.state.liked == false){
+      this.setState({
+      liked: true
+      })
+      this.props.dispatch(UserActions.saveRides(this.props.ride.id))
+    }
+    if (this.state.liked == true){
+      this.setState({
+      liked: false
+      })
+    }
   }
 
   renderLikeButton = () => {
     if (this.state.liked) {
-      this.props.dispatch(UserActions.saveListings(this.props.listing.id))
       return (
         <IoIosHeart color='red' size={20} />
       )
