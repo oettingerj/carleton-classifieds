@@ -4,6 +4,9 @@ import React, { Component } from 'react'
 import { Card, Button, Row, Col, Image, Container } from 'react-bootstrap'
 import type { User } from '../Config/Types'
 import './Styles/Listing.css'
+import UserActions from '../Redux/UserRedux'
+import ListActions from '../Redux/ListingRedux'
+import { connect } from 'react-redux'
 
 type Props = {
   id: string,
@@ -13,7 +16,17 @@ type Props = {
   style?: {}
 }
 
-export default class UserRide extends Component<Props> {
+class UserRide extends Component<Props> {
+
+  deleteListings = () => {
+    this.props.dispatch(UserActions.deleteOwnRides(this.props.id))
+    this.props.dispatch(UserActions.unsaveRides(this.props.id))
+    this.props.dispatch(ListActions.deleteRides(this.props.id))
+  }
+
+  viewEditListings = () => {
+  }
+
   render () {
     return (
       <Card style={this.props.style} className='listingCard'>
@@ -33,8 +46,8 @@ export default class UserRide extends Component<Props> {
               </Row>
               <Row>
                 <Col md={8}>
-                  <Button className='mt-3' variant='outline-primary'>View/Edit Listing</Button>
-                  <Button className='mt-3 ml-2' variant='outline-primary'>Delete Listing</Button>
+                  <Button onClick={this.viewEditListings} className='mt-3' variant='outline-primary'>View/Edit Listing</Button>
+                  <Button onClick={this.deleteListings} className='mt-3 ml-2' variant='outline-primary'>Delete Listing</Button>
                 </Col>
               </Row>
             </Col>
@@ -44,3 +57,9 @@ export default class UserRide extends Component<Props> {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+
+})
+
+export default connect(mapStateToProps)(UserRide)

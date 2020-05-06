@@ -59,7 +59,7 @@ class CreateListing extends Component<Props, State> {
       user: this.props.user,
       img: values.img,
       price: values.price,
-      sold: false
+      liked: false
     }
     this.props.dispatch(ListingActions.saveListing(listing))
     this.props.dispatch(UserActions.saveOwnListings(listing))

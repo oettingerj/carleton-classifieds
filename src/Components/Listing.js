@@ -34,6 +34,7 @@ class ListingComponent extends Component<Props, State> {
       this.setState({
       liked: false
     })
+    this.props.dispatch(UserActions.unsaveListings(this.props.listing.id))
     }
   }
 

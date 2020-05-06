@@ -9,7 +9,11 @@ const { Types, Creators } = createActions({
   saveOwnListings: ['ownListings'],
   saveOwnRides: ['ownRides'],
   saveListings: ['saving_listing'],
-  saveRides: ['saving_ride']
+  saveRides: ['saving_ride'],
+  unsaveListings: ['id'],
+  deleteOwnListings: ['id'],
+  unsaveRides: ['id'],
+  deleteOwnRides: ['id']
 })
 
 export const ConfigTypes = Types
@@ -63,6 +67,22 @@ export const saveRides = (state, { saving_ride }) => state.merge({
   savedRides: state.savedRides.concat(saving_ride)
 })
 
+export const unsaveListings = (state, { id }) => state.merge({
+  savedListings: state.savedListings.filter((listing => listing !== id))
+})
+
+export const deleteOwnListings = (state, { id }) => state.merge({
+  ownListings: state.ownListings.filter((listing => listing.id !== id))
+})
+
+export const unsaveRides = (state, { id }) => state.merge({
+  savedRides: state.savedRides.filter((listing => listing !== id))
+})
+
+export const deleteOwnRides = (state, { id }) => state.merge({
+  ownRides: state.ownRides.filter((listing => listing.id !== id))
+})
+
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -72,5 +92,9 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SAVE_OWN_LISTINGS]: saveOwnListings,
   [Types.SAVE_OWN_RIDES]: saveOwnRides,
   [Types.SAVE_LISTINGS]: saveListings,
-  [Types.SAVE_RIDES]: saveRides
+  [Types.SAVE_RIDES]: saveRides,
+  [Types.UNSAVE_LISTINGS]: unsaveListings,
+  [Types.DELETE_OWN_LISTINGS]: deleteOwnListings,
+  [Types.UNSAVE_RIDES]: unsaveRides,
+  [Types.DELETE_OWN_RIDES]: deleteOwnRides
 })

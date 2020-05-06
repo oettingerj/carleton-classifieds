@@ -17,7 +17,7 @@ class UserListings extends Component<Props> {
 
     for (const listing of this.props.listings) {
       components.push(
-        <ListingComponent id={listing.id} img={listing.img} title={listing.title} user={listing.user} />
+        <ListingComponent id={listing.id} img={listing.img} title={listing.title} user={listing.user} listing={listing} />
       )
     }
     return components

@@ -116,11 +116,16 @@ class CreateRideRequest extends Component<Props, State> {
     }
   }
 
+  generateRandomID = () => {
+   const id = Math.random()
+   return id.toString()
+ }
+
   handleSubmit = (values: any) => {
     const time = moment(values.datetime)
     if (values.ampm === 'PM') time.add(12, 'hours')
     const ride: RideListing = {
-      id: '51',
+      id: this.generateRandomID(),
       created: new Date(),
       user: this.props.user,
       datetime: time.toDate(),

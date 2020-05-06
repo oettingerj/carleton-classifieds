@@ -3,7 +3,7 @@ import immutablePersistenceTransform from '../Services/ImmutablePersistenceTrans
 
 const REDUX_PERSIST = {
   active: true,
-  reducerVersion: '0.3',
+  reducerVersion: '0.4',
   storeConfig: {
     key: 'primary',
     storage,
