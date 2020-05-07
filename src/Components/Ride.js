@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import { Card, Button, Row, Col, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io'
+import { IoIosStarOutline, IoIosStar } from 'react-icons/io'
 import type { RideListing } from '../Config/Types'
 import UserActions from '../Redux/UserRedux'
 import moment from 'moment'
@@ -58,11 +58,11 @@ class RideComponent extends Component<Props, State> {
   renderLikeButton = () => {
     if (this.state.liked) {
       return (
-        <IoIosHeart color='red' size={20} />
+        <IoIosStar color='red' size={20} />
       )
     } else {
       return (
-        <IoIosHeartEmpty color='red' size={20} />
+        <IoIosStarOutline color='red' size={20} />
       )
     }
   }

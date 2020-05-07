@@ -18,7 +18,7 @@ class Account extends Component<Props> {
     return (
       <Container className='mt-4'>
         <Tabs defaultActiveKey='items' id='userTabs'>
-          <Tab title='Saved Items' eventKey='items'>
+          <Tab title='Starred Items' eventKey='items'>
             <Container className='mt-4'>
               <SavedItems />
               <SavedRides />

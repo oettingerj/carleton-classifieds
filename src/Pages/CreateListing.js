@@ -82,7 +82,7 @@ class CreateListing extends Component<Props, State> {
         <Row>
           <Col md={6}>
             <Form.Group controlId='1'>
-              <Form.Label>Item Name</Form.Label>
+              <Form.Label>Item Name *</Form.Label>
               <Form.Control
                 required
                 type='text'
@@ -95,7 +95,7 @@ class CreateListing extends Component<Props, State> {
           </Col>
           <Col md={6}>
             <Form.Group controlId='2'>
-              <Form.Label>Price</Form.Label>
+              <Form.Label>Price *</Form.Label>
               <Form.Control
                 required
                 placeholder='In Dollars'
@@ -110,7 +110,7 @@ class CreateListing extends Component<Props, State> {
         <Row>
           <Col md={6}>
             <Form.Group controlId='4'>
-              <Form.Label>Type Of Item</Form.Label>
+              <Form.Label>Type Of Item *</Form.Label>
               <Form.Control
                 required
                 custom
@@ -136,7 +136,7 @@ class CreateListing extends Component<Props, State> {
           </Col>
           <Col md={6}>
             <Form.Group controlId='5'>
-              <Form.Label>Description</Form.Label>
+              <Form.Label>Description * </Form.Label>
               <Form.Control
                 required
                 as='textarea'

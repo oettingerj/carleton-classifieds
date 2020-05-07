@@ -1,4 +1,4 @@
-import { Container, Row, Col, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap'
 import React, { Component } from 'react'
 import SideBar from '../Components/SideBar'
 import { connect } from 'react-redux'
@@ -8,7 +8,27 @@ type Props = {
   listing: ItemListing
 }
 
+type State = {
+  showModal: boolean
+}
+
 class ViewListing extends Component<Props> {
+  handleModalClose = () => {
+    this.setState({ showModal: false })
+    this.props.history.push('/')
+  }
+
+  constructor (props: Props) {
+    super(props)
+    this.state = {
+      showModal: false
+    }
+  }
+
+  handleSubmit = (values: any) => {
+    this.setState({ showModal: true })
+  }
+
   render () {
     return (
       <Row>
@@ -32,11 +52,20 @@ class ViewListing extends Component<Props> {
               </Row>
               <Card.Text className='p-2'>{this.props.listing.description}</Card.Text>
               <Row className='justify-content-md-center'>
-                <Button variant='outline-primary'>I'm Interested</Button>
+                <Button variant='outline-primary' onClick={this.handleSubmit}>I'm Interested</Button>
               </Row>
             </Card.Body>
           </Card>
         </Container>
+        <Modal centered show={this.state.showModal}>
+          <Modal.Header>Contact: {this.props.listing.user.name}</Modal.Header>
+          <Modal.Body> <p>Email: {this.props.listing.user.email}</p> </Modal.Body>
+          <Modal.Footer>
+            <Button variant='primary' onClick={this.handleModalClose}>
+              Back to Home
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Row>
     )
   }

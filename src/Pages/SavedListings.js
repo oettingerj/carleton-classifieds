@@ -28,7 +28,7 @@ class SavedListings extends Component<Props> {
     return (
       <Container>
         <header>
-          <h2>Saved Listings</h2>
+          <h2>Starred Listings</h2>
         </header>
         <ListingGrid listingsPerRow={4}>
           {this.renderListings()}

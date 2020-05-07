@@ -1,9 +1,9 @@
 // @flow
 
 import React, { Component } from 'react'
-import { Card, Button, Row, Col, Image, Container } from 'react-bootstrap'
+import { Card, Button, Row, Col, Image, Container} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io'
+import { IoIosStar, IoIosStarOutline } from 'react-icons/io'
 import UserActions from '../Redux/UserRedux'
 import './Styles/Listing.css'
 import { connect } from 'react-redux'
@@ -19,7 +19,7 @@ class ListingComponent extends Component<Props, State> {
   constructor (props: Props) {
     super(props)
     this.state = {
-      liked: false
+      liked: false,
     }
   }
 
@@ -41,11 +41,11 @@ class ListingComponent extends Component<Props, State> {
   renderLikeButton = () => {
     if (this.state.liked) {
       return (
-        <IoIosHeart color='red' size={20} />
+        <IoIosStar color='red' size={20} />
       )
     } else {
       return (
-        <IoIosHeartEmpty color='red' size={20} />
+        <IoIosStarOutline color='red' size={20} />
       )
     }
   }
@@ -59,6 +59,7 @@ class ListingComponent extends Component<Props, State> {
             <Col className='align-items-center'>
               <Row>
                 <Col sm={8}>
+                  <div className='listingTitle'>${this.props.listing.price}</div>
                   <div className='listingTitle'>{this.props.listing.title}</div>
                 </Col>
                 <Col className='d-flex justify-content-end'>
