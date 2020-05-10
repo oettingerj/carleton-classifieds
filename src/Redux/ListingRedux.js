@@ -7,7 +7,8 @@ import mockRides from '../Mock Data/RideListing.json'
 
 const { Types, Creators } = createActions({
   saveListing: ['item'],
-  createRideRequest: ['ride']
+  createRideRequest: ['ride'],
+  setItemListings: ['listings']
 })
 
 export const ConfigTypes = Types
@@ -26,6 +27,8 @@ export const saveListing = (state, { item }) => state.merge({
   listings: state.listings.concat(item)
 })
 
+export const setItemListings = (state, { listings }) => state.merge({ listings })
+
 export const createRideRequest = (state, { ride }) => state.merge({
   rides: state.rides.concat(ride)
 })
@@ -34,5 +37,6 @@ export const createRideRequest = (state, { ride }) => state.merge({
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.SAVE_LISTING]: saveListing,
-  [Types.CREATE_RIDE_REQUEST]: createRideRequest
+  [Types.CREATE_RIDE_REQUEST]: createRideRequest,
+  [Types.SET_ITEM_LISTINGS]: setItemListings
 })

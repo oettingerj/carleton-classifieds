@@ -6,17 +6,24 @@ export default () => {
   const api = apisauce.create({
     baseURL: 'http://127.0.0.1:8000/',
     // 15 second timeout
-    timeout: 15000
+    timeout: 15000,
+    withCredentials: true
   })
 
-  const getPosts = (limit, offset) => () => api.get('feed/items', {
-    limit: limit,
-    offset: offset
+  const authenticate = (idToken) => api.post('tokensignin/', {
+    idtoken: idToken
   })
+
+  const logout = () => api.post('logout/')
+
+  const getItemListings = () => api.get('api/get/available_postings//')
 
   return {
-    getPosts
+    authenticate,
+    logout,
+    getItemListings
   }
 }
 
 export const GOOGLE_API_KEY = 'AIzaSyDQxf6bbw9DxeYDg40WN8PbDeQ-oF9SYiw'
+export const GOOGLE_LOGIN_CLIENT_ID = '578173933063-2bldsbnkidcvoiq20eqeasv7u6u1fog3.apps.googleusercontent.com'

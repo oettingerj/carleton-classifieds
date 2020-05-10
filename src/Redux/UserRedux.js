@@ -33,7 +33,7 @@ export const setInfo = (state, { name, id, email }) => state.merge({ name, id, e
 
 export const setLoggedIn = (state, { isLoggedIn }) => state.merge({ isLoggedIn })
 
-/* ------------- Hookup Reducers To Types ------------- */
+/* ------------- Hook Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.SET_INFO]: setInfo,

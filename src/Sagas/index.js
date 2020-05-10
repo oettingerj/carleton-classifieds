@@ -2,16 +2,16 @@ import { takeLatest, all } from 'redux-saga/effects'
 
 /* ------------- Types ------------- */
 
-import { ConfigTypes } from '../Redux/ExampleRedux'
+import { StartupTypes } from '../Redux/StartupRedux'
 
 /* ------------- Sagas ------------- */
 
-import { setGettingRecents } from './ExampleSagas'
+import { startup } from './StartupSagas'
 
 /* ------------- Connect Types To Sagas ------------- */
 
 export default function * root () {
   yield all([
-    takeLatest(ConfigTypes.SET_GETTING_RECENTS, setGettingRecents)
+    takeLatest(StartupTypes.STARTUP, startup)
   ])
 }
