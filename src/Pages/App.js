@@ -14,12 +14,20 @@ import Home from './Home'
 import NavBar from '../Components/NavigationBar'
 import ProtectedRoute from '../Components/ProtectedRoute'
 import UserActions from '../Redux/UserRedux'
+import API from '../Services/API'
 
 type Props = {
   dispatch: ({}) => void
 }
 
 class App extends Component<Props> {
+  api: any
+
+  constructor (props: Props) {
+    super(props)
+    this.api = API()
+  }
+
   logout = () => {
     console.log('logged out')
     this.props.dispatch(UserActions.setLoggedIn(false))
