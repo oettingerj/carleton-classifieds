@@ -7,7 +7,9 @@ export function * startup ({ store }) {
   if (state.user.isLoggedIn) {
     const api = API()
     yield api.getItemListings().then((response) => {
-      store.dispatch(ListingActions.setItemListings(response.data))
+      if (response.ok) {
+        store.dispatch(ListingActions.setItemListings(response.data))
+      }
     })
   }
 }
