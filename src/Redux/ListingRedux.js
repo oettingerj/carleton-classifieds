@@ -9,7 +9,8 @@ const { Types, Creators } = createActions({
   saveListing: ['item'],
   createRideRequest: ['ride'],
   deleteListings: ['id'],
-  deleteRides: ['id']
+  deleteRides: ['id'],
+  liked:['id']
 })
 
 export const ConfigTypes = Types
@@ -40,6 +41,11 @@ export const deleteRides = (state, { id }) => state.merge({
   rides: state.rides.filter((ride => ride.id !== id))
 })
 
+export const liked = (state, { listing }) => state.merge({
+
+})
+
+
 
 
 /* ------------- Hookup Reducers To Types ------------- */
@@ -49,5 +55,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CREATE_RIDE_REQUEST]: createRideRequest,
   [Types.DELETE_LISTINGS]: deleteListings,
   [Types.DELETE_RIDES]: deleteRides,
+  [Types.LIKED]:liked
 
 })

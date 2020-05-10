@@ -159,7 +159,7 @@ class CreateRideRequest extends Component<Props, State> {
     return (
       <Form noValidate onSubmit={handleSubmit}>
         <Form.Group>
-          <Form.Label>Pickup Location</Form.Label>
+          <Form.Label>Pickup Location *</Form.Label>
           <Form.Control
             required
             type='text'
@@ -169,7 +169,7 @@ class CreateRideRequest extends Component<Props, State> {
           />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Drop-off Location</Form.Label>
+          <Form.Label>Drop-off Location *</Form.Label>
           <Form.Control
             required
             type='text'
@@ -180,7 +180,7 @@ class CreateRideRequest extends Component<Props, State> {
         </Form.Group>
         <Form.Row>
           <Form.Group as={Col}>
-            <Form.Label>Date & Time (Central Time)</Form.Label>
+            <Form.Label>Date & Time (Central Time) *</Form.Label>
             <Row>
               <Col md='auto'>
                 <Form.Control

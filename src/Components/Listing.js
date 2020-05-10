@@ -5,6 +5,7 @@ import { Card, Button, Row, Col, Image, Container} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { IoIosStar, IoIosStarOutline } from 'react-icons/io'
 import UserActions from '../Redux/UserRedux'
+import ListingActions from '../Redux/ListingRedux'
 import './Styles/Listing.css'
 import { connect } from 'react-redux'
 
@@ -28,6 +29,7 @@ class ListingComponent extends Component<Props, State> {
       this.setState({
       liked: true
     })
+      this.props.dispatch(ListingActions.liked(this.props.listing.id))
       this.props.dispatch(UserActions.saveListings(this.props.listing.id))
     }
     if (this.state.liked == true){
