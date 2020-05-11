@@ -44,8 +44,16 @@ export const deleteRides = (state, { id }) => state.merge({
   rides: state.rides.filter((ride => ride.id !== id))
 })
 
-export const liked = (state, { listing }) => state.merge({
-
+export const liked = (state, { id }) => state.merge({
+  listings: state.listings.map((listing) => {
+    if (listing.id === id){
+      console.log("this works")
+      console.log("one", listing.liked)
+      listing.set("liked", true)
+      console.log("two", listing.liked)
+    }
+    return listing
+  })
 })
 
 

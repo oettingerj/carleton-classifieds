@@ -25,14 +25,15 @@ class ListingComponent extends Component<Props, State> {
   }
 
   handleLikePress = () => {
-    if (this.state.liked == false){
+    if (this.props.listing.liked == false){
       this.setState({
       liked: true
     })
       this.props.dispatch(ListingActions.liked(this.props.listing.id))
+      console.log(this.props.listing)
       this.props.dispatch(UserActions.saveListings(this.props.listing.id))
     }
-    if (this.state.liked == true){
+    if (this.props.listing.liked == true){
       this.setState({
       liked: false
     })
@@ -41,7 +42,7 @@ class ListingComponent extends Component<Props, State> {
   }
 
   renderLikeButton = () => {
-    if (this.state.liked) {
+    if (this.props.listing.liked) {
       return (
         <IoIosStar color='red' size={20} />
       )
