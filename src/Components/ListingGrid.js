@@ -27,7 +27,7 @@ export default class ListingGrid extends Component<Props> {
 
     for (const child of children) {
       cols.push(
-        <Col key={child.key}>
+        <Col md={3} key={child.key}>
           {child}
         </Col>
       )

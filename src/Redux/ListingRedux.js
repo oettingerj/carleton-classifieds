@@ -20,7 +20,7 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  listings: mockListings,
+  listings: [],
   rides: mockRides
 })
 
@@ -66,6 +66,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CREATE_RIDE_REQUEST]: createRideRequest,
   [Types.DELETE_LISTINGS]: deleteListings,
   [Types.DELETE_RIDES]: deleteRides,
-  [Types.LIKED]:liked,
+  [Types.LIKED]: liked,
   [Types.SET_ITEM_LISTINGS]: setItemListings
 })

@@ -117,9 +117,9 @@ class CreateRideRequest extends Component<Props, State> {
   }
 
   generateRandomID = () => {
-   const id = Math.random()
-   return id.toString()
- }
+    const id = Math.random()
+    return id.toString()
+  }
 
   handleSubmit = (values: any) => {
     const time = moment(values.datetime)

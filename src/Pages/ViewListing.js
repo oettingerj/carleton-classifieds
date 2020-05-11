@@ -12,12 +12,7 @@ type State = {
   showModal: boolean
 }
 
-class ViewListing extends Component<Props> {
-  handleModalClose = () => {
-    this.setState({ showModal: false })
-    this.props.history.push('/')
-  }
-
+class ViewListing extends Component<Props, State> {
   constructor (props: Props) {
     super(props)
     this.state = {
@@ -25,7 +20,12 @@ class ViewListing extends Component<Props> {
     }
   }
 
-  handleSubmit = (values: any) => {
+  handleModalClose = () => {
+    this.setState({ showModal: false })
+    this.props.history.push('/')
+  }
+
+  handleSubmit = () => {
     this.setState({ showModal: true })
   }
 
@@ -77,7 +77,7 @@ class ViewListing extends Component<Props> {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const id = parseInt(ownProps.match.params.id)
+  const id = ownProps.match.params.id
   for (const listing of state.listings.listings) {
     if (listing.id === id) {
       return { listing }

@@ -1,48 +1,51 @@
 // @flow
 
 import React, { Component } from 'react'
-import { Card, Button, Row, Col, Image, Container} from 'react-bootstrap'
+import { Card, Button, Row, Col, Image, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { IoIosStar, IoIosStarOutline } from 'react-icons/io'
 import UserActions from '../Redux/UserRedux'
 import ListingActions from '../Redux/ListingRedux'
 import './Styles/Listing.css'
 import { connect } from 'react-redux'
-
+import type {ItemListing} from '../Config/Types'
 
 type Props = {
   listing: ItemListing,
   style?: {},
+  dispatch: ({}) => void
+}
+type State = {
+  liked: boolean
 }
 
 class ListingComponent extends Component<Props, State> {
-
   constructor (props: Props) {
     super(props)
     this.state = {
-      liked: false,
+      liked: false
     }
   }
 
   handleLikePress = () => {
-    if (this.props.listing.liked == false){
+    if (this.state.liked === false) {
       this.setState({
-      liked: true
-    })
+        liked: true
+      })
       this.props.dispatch(ListingActions.liked(this.props.listing.id))
       console.log(this.props.listing)
       this.props.dispatch(UserActions.saveListings(this.props.listing.id))
     }
-    if (this.props.listing.liked == true){
+    if (this.state.liked === true) {
       this.setState({
-      liked: false
-    })
-    this.props.dispatch(UserActions.unsaveListings(this.props.listing.id))
+        liked: false
+      })
+      this.props.dispatch(UserActions.unsaveListings(this.props.listing.id))
     }
   }
 
   renderLikeButton = () => {
-    if (this.props.listing.liked) {
+    if (this.state.liked) {
       return (
         <IoIosStar color='red' size={20} />
       )

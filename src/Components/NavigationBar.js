@@ -21,11 +21,11 @@ export default class NavigationBar extends Component<Props> {
             <Nav.Link as={Link} to='/' href='/'>Listings</Nav.Link>
             <Nav.Link as={Link} to='/rides' href='/rides'>Rides</Nav.Link>
             <Nav.Link as={Link} to='/user' href='/user'>Your Items</Nav.Link>
-            <NavDropdown title="Create" id="basic-nav-dropdown">
-            <p>
-              <Link to='/create_listing'> Create Listing </Link> <br/>
-              <Link to='/create_ride_request'> Create Ride </Link> <br/>
-            </p>
+            <NavDropdown title='Create' id='basic-nav-dropdown'>
+              <p>
+                <Link to='/create_listing'> Create Listing </Link> <br />
+                <Link to='/create_ride_request'> Create Ride </Link> <br />
+              </p>
             </NavDropdown>
           </Nav>
           <div className='d-flex flex-row'>

@@ -14,7 +14,7 @@ export default () => {
     idtoken: idToken
   })
 
-  const logout = () => api.post('logout/')
+  const logout = () => api.get('logout/')
 
   const getItemListings = () => api.get('api/get/available_postings//')
 
