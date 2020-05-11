@@ -18,10 +18,13 @@ export default () => {
 
   const getItemListings = () => api.get('api/get/available_postings//')
 
+  const getRideListings = () => api.get('api/get/available_rides/')
+
   return {
     authenticate,
     logout,
-    getItemListings
+    getItemListings,
+    getRideListings
   }
 }
 
