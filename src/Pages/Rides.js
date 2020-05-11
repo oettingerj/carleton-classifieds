@@ -31,9 +31,9 @@ class Rides extends Component<Props> {
         </Col>
         <Col>
           <Container fluid>
-          <Row className='justify-content-md-center'>
-            <h2> Upcoming Rides </h2>
-          </Row>
+            <Row className='justify-content-md-center'>
+              <h2> Upcoming Rides </h2>
+            </Row>
             <Row className='mx-auto'>
               <Col>
                 <ListingGrid listingsPerRow={4}>

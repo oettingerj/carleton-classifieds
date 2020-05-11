@@ -13,7 +13,8 @@ type Props = {
   img?: string,
   title: string,
   user: User,
-  style?: {}
+  style?: {},
+  dispatch: ({}) => void
 }
 
 class Listing extends Component<Props> {

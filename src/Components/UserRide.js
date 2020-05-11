@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react'
 import { Card, Button, Row, Col, Image, Container } from 'react-bootstrap'
-import type { User } from '../Config/Types'
 import './Styles/Listing.css'
 import UserActions from '../Redux/UserRedux'
 import ListActions from '../Redux/ListingRedux'
@@ -13,18 +12,15 @@ type Props = {
   img?: string,
   startLocation?: string,
   endLocation?: string,
-  style?: {}
+  style?: {},
+  dispatch: ({}) => void
 }
 
 class UserRide extends Component<Props> {
-
   deleteListings = () => {
     this.props.dispatch(UserActions.deleteOwnRides(this.props.id))
     this.props.dispatch(UserActions.unsaveRides(this.props.id))
     this.props.dispatch(ListActions.deleteRides(this.props.id))
-  }
-
-  viewEditListings = () => {
   }
 
   render () {

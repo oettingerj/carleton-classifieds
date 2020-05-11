@@ -12,7 +12,8 @@ import { connect } from 'react-redux'
 
 type Props = {
   ride: RideListing,
-  style?: {}
+  style?: {},
+  dispatch: ({}) => void
 }
 type State = {
   liked: boolean
@@ -42,15 +43,15 @@ class RideComponent extends Component<Props, State> {
   }
 
   handleLikePress = () => {
-    if (this.state.liked == false){
+    if (this.state.liked === false) {
       this.setState({
-      liked: true
+        liked: true
       })
       this.props.dispatch(UserActions.saveRides(this.props.ride.id))
     }
-    if (this.state.liked == true){
+    if (this.state.liked === true) {
       this.setState({
-      liked: false
+        liked: false
       })
     }
   }

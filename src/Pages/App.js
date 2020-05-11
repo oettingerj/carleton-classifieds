@@ -13,8 +13,8 @@ import CreateRideRequest from './CreateRideRequest'
 import Home from './Home'
 import NavBar from '../Components/NavigationBar'
 import ProtectedRoute from '../Components/ProtectedRoute'
-import UserActions from '../Redux/UserRedux'
 import API from '../Services/API'
+import Cookies from 'js-cookie'
 
 type Props = {
   dispatch: ({}) => void
@@ -29,8 +29,9 @@ class App extends Component<Props> {
   }
 
   logout = () => {
-    console.log('logged out')
-    this.props.dispatch(UserActions.setLoggedIn(false))
+    this.api.logout().then((response) => {
+      Cookies.remove('loggedIn')
+    })
   }
 
   render () {

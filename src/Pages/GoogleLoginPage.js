@@ -1,10 +1,10 @@
 import GoogleLogin from 'react-google-login'
 import React, { Component } from 'react'
-import { Card, Modal, Button } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import './Styles/Login.css'
 import { connect } from 'react-redux'
-import UserActions from '../Redux/UserRedux'
 import API, { GOOGLE_LOGIN_CLIENT_ID } from '../Services/API'
+import Cookies from 'js-cookie'
 
 type Props = {
   dispatch: ({}) => void,
@@ -29,7 +29,7 @@ class GoogleLoginPage extends Component<Props, State> {
     const idToken = googleUser.getAuthResponse().id_token
     this.api.authenticate(idToken).then((response) => {
       if (response.status === 200) {
-        this.props.dispatch(UserActions.setLoggedIn(true))
+        Cookies.set('loggedIn', true)
         this.props.history.push('/')
       }
     }).catch((error) => console.warn(error))

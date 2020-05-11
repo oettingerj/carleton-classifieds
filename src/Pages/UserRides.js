@@ -15,8 +15,10 @@ class UserRides extends Component<Props> {
     const components = []
     for (const ride of this.props.rides) {
       components.push(
-        <UserRideComponent id={ride.id} img={'https://www.freepnglogos.com/uploads/pin-png/location-pin-connectsafely-37.png'}
-         startLocation={ride.startLocation.name} endLocation={ride.endLocation.name}/>
+        <UserRideComponent
+          id={ride.id} img='https://www.freepnglogos.com/uploads/pin-png/location-pin-connectsafely-37.png'
+          startLocation={ride.startLocation.name} endLocation={ride.endLocation.name}
+        />
       )
     }
     return components
