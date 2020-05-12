@@ -9,8 +9,10 @@ const { Types, Creators } = createActions({
   deleteListings: ['id'],
   deleteRides: ['id'],
   liked: ['id'],
+  unliked: ['id'],
   setItemListings: ['listings'],
-  setRideListings: ['rides']
+  setRideListings: ['listings'],
+
 })
 
 export const ListingTypes = Types
