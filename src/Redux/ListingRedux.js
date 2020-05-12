@@ -1,7 +1,5 @@
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
-import mockListings from '../Mock Data/Listing.json'
-import mockRides from '../Mock Data/RideListing.json'
 
 /* ------------- Types and Action Creators ------------- */
 
@@ -10,19 +8,19 @@ const { Types, Creators } = createActions({
   createRideRequest: ['ride'],
   deleteListings: ['id'],
   deleteRides: ['id'],
-  liked:['id'],
-  unliked:['id'],
+  liked: ['id'],
   setItemListings: ['listings'],
+  setRideListings: ['rides']
 })
 
-export const ConfigTypes = Types
+export const ListingTypes = Types
 export default Creators
 
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
   listings: [],
-  rides: mockRides
+  rides: []
 })
 
 /* ------------- Reducers ------------- */
@@ -33,16 +31,18 @@ export const saveListing = (state, { item }) => state.merge({
 
 export const setItemListings = (state, { listings }) => state.merge({ listings })
 
+export const setRideListings = (state, { rides }) => state.merge({ rides })
+
 export const createRideRequest = (state, { ride }) => state.merge({
   rides: state.rides.concat(ride)
 })
 
 export const deleteListings = (state, { id }) => state.merge({
-  listings: state.listings.filter((listing => listing.id !== id))
+  listings: state.listings.filter(listing => listing.id !== id)
 })
 
 export const deleteRides = (state, { id }) => state.merge({
-  rides: state.rides.filter((ride => ride.id !== id))
+  rides: state.rides.filter(ride => ride.id !== id)
 })
 
 export const liked = (state, { id }) => state.merge({
@@ -69,9 +69,6 @@ export const unliked = (state, { id }) => state.merge({
   })
 })
 
-
-
-
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -80,6 +77,11 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.DELETE_LISTINGS]: deleteListings,
   [Types.DELETE_RIDES]: deleteRides,
   [Types.LIKED]: liked,
+<<<<<<< HEAD
   [Types.UNLIKED]: unliked,
   [Types.SET_ITEM_LISTINGS]: setItemListings,
+=======
+  [Types.SET_ITEM_LISTINGS]: setItemListings,
+  [Types.SET_RIDE_LISTINGS]: setRideListings
+>>>>>>> d93f5bf8a38b23ef15541ebed64977461e813761
 })
