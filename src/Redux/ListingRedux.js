@@ -77,11 +77,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.DELETE_LISTINGS]: deleteListings,
   [Types.DELETE_RIDES]: deleteRides,
   [Types.LIKED]: liked,
-<<<<<<< HEAD
   [Types.UNLIKED]: unliked,
   [Types.SET_ITEM_LISTINGS]: setItemListings,
-=======
-  [Types.SET_ITEM_LISTINGS]: setItemListings,
   [Types.SET_RIDE_LISTINGS]: setRideListings
->>>>>>> d93f5bf8a38b23ef15541ebed64977461e813761
+
 })
