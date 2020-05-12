@@ -53,6 +53,8 @@ class RideComponent extends Component<Props, State> {
       this.setState({
         liked: false
       })
+
+      this.props.dispatch(UserActions.unsaveRides(this.props.ride.id))
     }
   }
 

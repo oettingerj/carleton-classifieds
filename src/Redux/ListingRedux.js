@@ -11,7 +11,8 @@ const { Types, Creators } = createActions({
   deleteListings: ['id'],
   deleteRides: ['id'],
   liked:['id'],
-  setItemListings: ['listings']
+  unliked:['id'],
+  setItemListings: ['listings'],
 })
 
 export const ConfigTypes = Types
@@ -47,10 +48,22 @@ export const deleteRides = (state, { id }) => state.merge({
 export const liked = (state, { id }) => state.merge({
   listings: state.listings.map((listing) => {
     if (listing.id === id){
-      console.log("this works")
-      console.log("one", listing.liked)
-      listing.set("liked", true)
-      console.log("two", listing.liked)
+      return {
+        ...listing,
+        sold: true
+      }
+    }
+    return listing
+  })
+})
+
+export const unliked = (state, { id }) => state.merge({
+  listings: state.listings.map((listing) => {
+    if (listing.id === id){
+      return {
+        ...listing,
+        sold: false
+      }
     }
     return listing
   })
@@ -67,5 +80,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.DELETE_LISTINGS]: deleteListings,
   [Types.DELETE_RIDES]: deleteRides,
   [Types.LIKED]: liked,
-  [Types.SET_ITEM_LISTINGS]: setItemListings
+  [Types.UNLIKED]: unliked,
+  [Types.SET_ITEM_LISTINGS]: setItemListings,
 })
