@@ -13,7 +13,7 @@ const { Types, Creators } = createActions({
   setRideListings: ['rides']
 })
 
-export const ConfigTypes = Types
+export const ListingTypes = Types
 export default Creators
 
 /* ------------- Initial State ------------- */

@@ -1,5 +1,6 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
+import Cookies from 'js-cookie'
 
 // our "constructor"
 export default () => {
@@ -7,7 +8,10 @@ export default () => {
     baseURL: 'http://127.0.0.1:8000/',
     // 15 second timeout
     timeout: 15000,
-    withCredentials: true
+    withCredentials: true,
+    headers: {
+      'X-CSRFTOKEN': Cookies.get('csrfToken')
+    }
   })
 
   const authenticate = (idToken) => api.post('tokensignin/', {
@@ -20,11 +24,14 @@ export default () => {
 
   const getRideListings = () => api.get('api/get/available_rides/')
 
+  const createRideListing = (ride) => api.post('rideposting/create/', ride)
+
   return {
     authenticate,
     logout,
     getItemListings,
-    getRideListings
+    getRideListings,
+    createRideListing
   }
 }
 

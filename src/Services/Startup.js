@@ -1,9 +1,9 @@
 import ListingActions from '../Redux/ListingRedux'
 import API from '../Services/API'
 
-const api = API()
-
 export const loadListings = (dispatch) => {
+  const api = API()
+
   api.getItemListings().then((response) => {
     if (response.ok) {
       dispatch(ListingActions.setItemListings(response.data))

@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import API, { GOOGLE_LOGIN_CLIENT_ID } from '../Services/API'
 import Cookies from 'js-cookie'
 import * as Startup from '../Services/Startup'
+import UserActions from '../Redux/UserRedux'
 
 type Props = {
   dispatch: ({}) => void,
@@ -29,8 +30,10 @@ class GoogleLoginPage extends Component<Props, State> {
   responsePass = (googleUser) => {
     const idToken = googleUser.getAuthResponse().id_token
     this.api.authenticate(idToken).then((response) => {
-      if (response.status === 200) {
+      if (response.ok) {
         Cookies.set('loggedIn', true)
+        Cookies.set('csrfToken', response.data.csrfToken)
+        this.props.dispatch(UserActions.setInfo(response.data.name, response.data.id, response.data.email))
         Startup.loadListings(this.props.dispatch)
         this.props.history.push('/')
       }

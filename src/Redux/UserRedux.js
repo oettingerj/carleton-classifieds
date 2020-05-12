@@ -15,7 +15,7 @@ const { Types, Creators } = createActions({
   deleteOwnRides: ['id']
 })
 
-export const ConfigTypes = Types
+export const UserTypes = Types
 export default Creators
 
 /* ------------- Initial State ------------- */
@@ -24,6 +24,7 @@ export const INITIAL_STATE = Immutable({
   name: '',
   id: '',
   email: '',
+  csrfToken: '',
   savedListings: [],
   savedRides: [],
   ownListings: [],
