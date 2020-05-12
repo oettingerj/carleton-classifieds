@@ -14,13 +14,16 @@ type Props = {
 
 class Rides extends Component<Props> {
   renderCards = () => {
-    const items = []
-    for (const ride of this.props.rides) {
-      items.push(
-        <Ride key={ride.id} user={ride.user} ride={ride} />
-      )
+    if (this.props.rides) {
+      const items = []
+      for (const ride of this.props.rides) {
+        items.push(
+          <Ride key={ride.id} user={ride.user} ride={ride} />
+        )
+      }
+      return items
     }
-    return items
+    return []
   }
 
   render () {

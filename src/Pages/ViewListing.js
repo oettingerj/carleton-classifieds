@@ -29,7 +29,7 @@ class ViewListing extends Component<Props, State> {
     this.setState({ showModal: true })
   }
 
-  render () {
+  renderListing = () => {
     return (
       <Row>
         <Col md='auto'>
@@ -68,6 +68,13 @@ class ViewListing extends Component<Props, State> {
         </Modal>
       </Row>
     )
+  }
+
+  render () {
+    if (this.props.listing) {
+      return this.renderListing()
+    }
+    return null
   }
 
   /*

@@ -10,6 +10,7 @@ import SideBar from '../Components/SideBar'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import { GOOGLE_API_KEY } from '../Services/API'
 import './Styles/ViewRide.css'
+import moment from 'moment'
 
 type Props = {
   ride: RideListing
@@ -18,6 +19,12 @@ type Props = {
 class ViewRide extends Component<Props> {
   center: {}
   zoom: number
+  dateString: string
+
+  mapSize = {
+    width: 640,
+    height: 380
+  }
 
   mapOptions = {
     fullscreenControl: false
@@ -25,13 +32,30 @@ class ViewRide extends Component<Props> {
 
   constructor (props: Props) {
     super(props)
-    const size = {
-      width: 640,
-      height: 380
+    this.center = {}
+    this.zoom = 0
+    this.dateString = ''
+  }
+
+  componentDidMount () {
+    if (this.props.ride) {
+      this.updateRideInfo()
     }
-    const { center, zoom } = fitBounds(this.getBounds(), size)
+  }
+
+  componentDidUpdate (oldProps) {
+    if (!oldProps.ride && this.props.ride) {
+      this.updateRideInfo()
+    }
+  }
+
+  updateRideInfo = () => {
+    const { center, zoom } = fitBounds(this.getBounds(), this.mapSize)
     this.center = center
     this.zoom = zoom
+
+    const dateObj = moment(this.props.ride.datetime)
+    this.dateString = dateObj.format('ddd MMM D, h:mm a')
   }
 
   getBounds = () => {
@@ -81,7 +105,7 @@ class ViewRide extends Component<Props> {
     return passengerText
   }
 
-  render () {
+  renderRide = () => {
     return (
       <Row>
         <Col md='auto'>
@@ -117,8 +141,11 @@ class ViewRide extends Component<Props> {
                       </div>
                     </Col>
                     <Col className='m-auto'>
-                      <Row className='mb-3'>
+                      <Row className='mb-1'>
                         <Col className='listingUser text-primary'>{this.props.ride.user.name}</Col>
+                      </Row>
+                      <Row className='mb-3'>
+                        <Col className='text-secondary'>{this.dateString}</Col>
                       </Row>
                       <Row style={{ height: '8vw' }}>
                         <Col className='d-flex flex-column justify-content-between'>
@@ -151,6 +178,13 @@ class ViewRide extends Component<Props> {
         </Col>
       </Row>
     )
+  }
+
+  render () {
+    if (this.props.ride) {
+      return this.renderRide()
+    }
+    return null
   }
 }
 
