@@ -77,9 +77,9 @@ class ViewListing extends Component<Props, State> {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const id = ownProps.match.params.id
+  const id = parseInt(ownProps.match.params.id)
   for (const listing of state.listings.listings) {
-    if (listing.id === id) {
+    if (parseInt(listing.id) === id) {
       return { listing }
     }
   }
