@@ -10,6 +10,8 @@ const { Types, Creators } = createActions({
   deleteRides: ['id'],
   liked: ['id'],
   unliked: ['id'],
+  likedRides: ['id'],
+  unlikedRides: ['id'],
   setItemListings: ['listings'],
   setRideListings: ['rides']
 })
@@ -70,6 +72,30 @@ export const unliked = (state, { id }) => state.merge({
   })
 })
 
+export const likedRides = (state, { id }) => state.merge({
+  rides: state.rides.map((ride) => {
+    if (ride.id === id){
+      return {
+        ...ride,
+        sold: true
+      }
+    }
+    return ride
+  })
+})
+
+export const unlikedRides = (state, { id }) => state.merge({
+  rides: state.rides.map((ride) => {
+    if (ride.id === id){
+      return {
+        ...ride,
+        sold: false
+      }
+    }
+    return ride
+  })
+})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -79,6 +105,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.DELETE_RIDES]: deleteRides,
   [Types.LIKED]: liked,
   [Types.UNLIKED]: unliked,
+  [Types.LIKED_RIDES]: likedRides,
+  [Types.UNLIKED_RIDES]: unlikedRides,
   [Types.SET_ITEM_LISTINGS]: setItemListings,
   [Types.SET_RIDE_LISTINGS]: setRideListings
 

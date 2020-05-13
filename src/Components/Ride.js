@@ -6,9 +6,11 @@ import { Link } from 'react-router-dom'
 import { IoIosStarOutline, IoIosStar } from 'react-icons/io'
 import type { RideListing } from '../Config/Types'
 import UserActions from '../Redux/UserRedux'
+import ListingActions from '../Redux/ListingRedux'
 import moment from 'moment'
 import './Styles/Ride.css'
 import { connect } from 'react-redux'
+
 
 type Props = {
   ride: RideListing,
@@ -43,23 +45,24 @@ class RideComponent extends Component<Props, State> {
   }
 
   handleLikePress = () => {
-    if (this.state.liked === false) {
+    if (this.props.ride.sold === false) {
       this.setState({
         liked: true
       })
+      this.props.dispatch(ListingActions.likedRides(this.props.ride.id))
       this.props.dispatch(UserActions.saveRides(this.props.ride.id))
     }
-    if (this.state.liked === true) {
+    if (this.props.ride.sold === true) {
       this.setState({
         liked: false
       })
-
+      this.props.dispatch(ListingActions.unlikedRides(this.props.ride.id))
       this.props.dispatch(UserActions.unsaveRides(this.props.ride.id))
     }
   }
 
   renderLikeButton = () => {
-    if (this.state.liked) {
+    if (this.props.ride.sold) {
       return (
         <IoIosStar color='red' size={20} />
       )
