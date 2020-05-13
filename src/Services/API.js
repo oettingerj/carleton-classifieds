@@ -22,6 +22,8 @@ export default () => {
 
   const getItemListings = () => api.get('api/get/available_postings//')
 
+  const getItemListingsByCategory = (category) => api.get(`api/get/available_postings/${category}/`)
+
   const getRideListings = () => api.get('api/get/available_rides/')
 
   const createRideListing = (ride) => api.post('rideposting/create/', ride)
@@ -34,7 +36,8 @@ export default () => {
     getItemListings,
     getRideListings,
     createRideListing,
-    createItemListing
+    createItemListing,
+    getItemListingsByCategory
   }
 }
 

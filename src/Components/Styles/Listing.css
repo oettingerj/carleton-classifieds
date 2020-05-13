@@ -3,6 +3,10 @@
     font-weight: 500;
 }
 
+.listingImage {
+    object-fit: cover;
+}
+
 .listingUser {
     font-size: 16px;
 }

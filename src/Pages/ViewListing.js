@@ -40,7 +40,7 @@ class ViewListing extends Component<Props, State> {
             <Card.Body>
               <Row>
                 <Col md={8}>
-                  <Card.Img variant='bottom' src={this.props.listing.img} className='w-100' />
+                  <Card.Img variant='bottom' src={this.props.listing.img} className='w-75' />
                 </Col>
                 <Col md={2}>
                   <Card.Title>{this.props.listing.title}</Card.Title>

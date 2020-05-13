@@ -8,7 +8,7 @@ import UserActions from '../Redux/UserRedux'
 import ListingActions from '../Redux/ListingRedux'
 import './Styles/Listing.css'
 import { connect } from 'react-redux'
-import type {ItemListing} from '../Config/Types'
+import type { ItemListing } from '../Config/Types'
 
 type Props = {
   listing: ItemListing,
@@ -28,12 +28,11 @@ class ListingComponent extends Component<Props, State> {
   }
 
   handleLikePress = () => {
-    console.log(this.props.listing)
     if (this.props.listing.sold === false) {
       this.setState({
         liked: true
       })
-  
+
       this.props.dispatch(ListingActions.liked(this.props.listing.id))
       this.props.dispatch(UserActions.saveListings(this.props.listing.id))
     }
@@ -58,10 +57,19 @@ class ListingComponent extends Component<Props, State> {
     }
   }
 
+  renderImage = () => {
+    if (this.props.listing.img && this.props.listing.img.length > 0) {
+      return (
+        <Image className='listingImage' fluid src={this.props.listing.img} />
+      )
+    }
+    return null
+  }
+
   render () {
     return (
       <Card style={this.props.style}>
-        <Image fluid src={this.props.listing.img} />
+        {this.renderImage()}
         <Container fluid className='p-3'>
           <Row>
             <Col className='align-items-center'>
