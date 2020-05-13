@@ -26,12 +26,15 @@ export default () => {
 
   const createRideListing = (ride) => api.post('rideposting/create/', ride)
 
+  const createItemListing = (listing) => api.post('itemposting/create/', listing)
+
   return {
     authenticate,
     logout,
     getItemListings,
     getRideListings,
-    createRideListing
+    createRideListing,
+    createItemListing
   }
 }
 

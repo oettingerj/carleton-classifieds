@@ -6,6 +6,7 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   saveListing: ['item'],
   createRideRequest: ['ride'],
+  createItemRequest: ['listing'],
   deleteListings: ['id'],
   deleteRides: ['id'],
   liked: ['id'],
@@ -38,6 +39,10 @@ export const setRideListings = (state, { rides }) => state.merge({ rides })
 
 export const createRideRequest = (state, { ride }) => state.merge({
   rides: state.rides.concat(ride)
+})
+
+export const createItemRequest = (state, { listing }) => state.merge({
+  listings: state.listings.concat(listing)
 })
 
 export const deleteListings = (state, { id }) => state.merge({
@@ -101,6 +106,7 @@ export const unlikedRides = (state, { id }) => state.merge({
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.SAVE_LISTING]: saveListing,
   [Types.CREATE_RIDE_REQUEST]: createRideRequest,
+  [Types.CREATE_ITEM_REQUEST]: createItemRequest,
   [Types.DELETE_LISTINGS]: deleteListings,
   [Types.DELETE_RIDES]: deleteRides,
   [Types.LIKED]: liked,

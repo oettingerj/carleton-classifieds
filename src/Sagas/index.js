@@ -9,12 +9,14 @@ import { ListingTypes } from '../Redux/ListingRedux'
 
 import { startup } from './StartupSagas'
 import { createRideRequest } from './ListingSagas'
+import { createItemRequest } from './ListingSagas'
 
 /* ------------- Connect Types To Sagas ------------- */
 
 export default function * root () {
   yield all([
     takeLatest(StartupTypes.STARTUP, startup),
-    takeLatest(ListingTypes.CREATE_RIDE_REQUEST, createRideRequest)
+    takeLatest(ListingTypes.CREATE_RIDE_REQUEST, createRideRequest),
+    takeLatest(ListingTypes.CREATE_ITEM_REQUEST, createItemRequest),
   ])
 }

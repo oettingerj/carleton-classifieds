@@ -7,6 +7,8 @@ import UserActions from '../Redux/UserRedux'
 import type { ItemListing, User } from '../Config/Types'
 import { connect } from 'react-redux'
 import { Formik } from 'formik'
+import { GOOGLE_API_KEY } from '../Services/API'
+
 
 const formSchema = yup.object({
   title: yup.string().required(),
@@ -59,10 +61,11 @@ class CreateListing extends Component<Props, State> {
       user: this.props.user,
       img: values.img,
       price: values.price,
-      liked: false
+      sold: false
     }
     this.props.dispatch(ListingActions.saveListing(listing))
     this.props.dispatch(UserActions.saveOwnListings(listing))
+    this.props.dispatch(ListingActions.createItemRequest(listing))
     this.setState({ showModal: true })
   }
 
