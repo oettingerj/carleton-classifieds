@@ -15,12 +15,13 @@ import moment from 'moment'
 type Props = {
   ride: RideListing
 }
-
-class ViewRide extends Component<Props> {
-  center: {}
-  zoom: number
+type State = {
+  center?: {},
+  zoom: number,
   dateString: string
+}
 
+class ViewRide extends Component<Props, State> {
   mapSize = {
     width: 640,
     height: 380
@@ -32,9 +33,10 @@ class ViewRide extends Component<Props> {
 
   constructor (props: Props) {
     super(props)
-    this.center = {}
-    this.zoom = 0
-    this.dateString = ''
+    this.state = {
+      zoom: 0,
+      dateString: ''
+    }
   }
 
   componentDidMount () {
@@ -51,11 +53,13 @@ class ViewRide extends Component<Props> {
 
   updateRideInfo = () => {
     const { center, zoom } = fitBounds(this.getBounds(), this.mapSize)
-    this.center = center
-    this.zoom = zoom
-
     const dateObj = moment(this.props.ride.datetime)
-    this.dateString = dateObj.format('ddd MMM D, h:mm a')
+    const dateString = dateObj.format('ddd MMM D, h:mm a')
+    this.setState({
+      center,
+      zoom,
+      dateString
+    })
   }
 
   getBounds = () => {
@@ -105,6 +109,35 @@ class ViewRide extends Component<Props> {
     return passengerText
   }
 
+  renderMap = () => {
+    if (this.state.center) {
+      return (
+        <div style={{ height: '30vw', width: '30vw' }}>
+          <Map
+            bootstrapURLKeys={{ key: GOOGLE_API_KEY }}
+            center={this.state.center}
+            zoom={this.state.zoom - 1}
+            options={this.mapOptions}
+          >
+            <FaMapMarkerAlt
+              className='text-success'
+              size={30}
+              lat={this.props.ride.startLocation.latitude}
+              lng={this.props.ride.startLocation.longitude}
+            />
+            <FaMapMarkerAlt
+              className='text-danger'
+              size={30}
+              lat={this.props.ride.endLocation.latitude}
+              lng={this.props.ride.endLocation.longitude}
+            />
+          </Map>
+        </div>
+      )
+    }
+    return null
+  }
+
   renderRide = () => {
     return (
       <Row>
@@ -118,34 +151,14 @@ class ViewRide extends Component<Props> {
                 <Container fluid>
                   <Row>
                     <Col>
-                      <div style={{ height: '30vw', width: '30vw' }}>
-                        <Map
-                          bootstrapURLKeys={{ key: GOOGLE_API_KEY }}
-                          center={this.center}
-                          zoom={this.zoom - 1}
-                          options={this.mapOptions}
-                        >
-                          <FaMapMarkerAlt
-                            className='text-success'
-                            size={30}
-                            lat={this.props.ride.startLocation.latitude}
-                            lng={this.props.ride.startLocation.longitude}
-                          />
-                          <FaMapMarkerAlt
-                            className='text-danger'
-                            size={30}
-                            lat={this.props.ride.endLocation.latitude}
-                            lng={this.props.ride.endLocation.longitude}
-                          />
-                        </Map>
-                      </div>
+                      {this.renderMap()}
                     </Col>
                     <Col className='m-auto'>
                       <Row className='mb-1'>
                         <Col className='listingUser text-primary'>{this.props.ride.user.name}</Col>
                       </Row>
                       <Row className='mb-3'>
-                        <Col className='text-secondary'>{this.dateString}</Col>
+                        <Col className='text-secondary'>{this.state.dateString}</Col>
                       </Row>
                       <Row style={{ height: '8vw' }}>
                         <Col className='d-flex flex-column justify-content-between'>
@@ -160,7 +173,7 @@ class ViewRide extends Component<Props> {
                           </Row>
                         </Col>
                         <Col md={4} className='text-center text-secondary secondaryText my-auto'>
-                          <p>{`${this.props.ride.distance} miles`}</p>
+                          <p>{`${Math.floor(Math.random() * Math.floor(50))} miles`}</p>
                           <p>{this.getPassengerText()}</p>
                         </Col>
                       </Row>

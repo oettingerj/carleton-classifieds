@@ -110,7 +110,7 @@ class RideComponent extends Component<Props, State> {
                   </Row>
                 </Col>
                 <Col md={4} className='my-auto text-center text-secondary secondaryTextSmall'>
-                  <p>{`${this.props.ride.distance} miles`}</p>
+                  <p>{`${Math.floor(Math.random() * Math.floor(50))} miles`}</p>
                   <p>{this.getPassengerText()}</p>
                 </Col>
               </Row>

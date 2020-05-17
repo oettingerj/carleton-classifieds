@@ -33,5 +33,6 @@ export type RideListing = {
   startLocation: Location,
   endLocation: Location,
   passengers: number,
-  distance: number
+  distance: number,
+  sold: boolean
 }
