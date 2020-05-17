@@ -7,8 +7,6 @@ import UserActions from '../Redux/UserRedux'
 import type { ItemListing, User } from '../Config/Types'
 import { connect } from 'react-redux'
 import { Formik } from 'formik'
-import { GOOGLE_API_KEY } from '../Services/API'
-
 
 const formSchema = yup.object({
   title: yup.string().required(),
@@ -46,16 +44,14 @@ class CreateListing extends Component<Props, State> {
   }
 
    generateRandomID = () => {
-    const id = Math.random()
-    return id.toString()
-  }
+     const id = Math.random()
+     return id.toString()
+   }
 
   handleSubmit = (values: any) => {
-    const id_string = this.generateRandomID()
-    console.log(id_string)
-
     const listing: ItemListing = {
-      id: id_string,
+      id: this.generateRandomID(),
+      created: new Date(),
       title: values.title,
       description: values.description,
       user: this.props.user,
@@ -154,10 +150,8 @@ class CreateListing extends Component<Props, State> {
         <Row className='justify-content-md-center'>
           <Col md={8}>
             <Form.File
-              required
               id='6'
               label='Upload Image of Item'
-              accept='image/png'
               custom
               name='img'
               value={values.img}
