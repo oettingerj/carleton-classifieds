@@ -33,7 +33,7 @@ class ListingComponent extends Component<Props, State> {
       this.setState({
         liked: true
       })
-  
+
       this.props.dispatch(ListingActions.liked(this.props.listing.id))
       this.props.dispatch(UserActions.saveListings(this.props.listing.id))
     }
@@ -105,3 +105,10 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps)(ListingComponent)
+/*
+Images:
+https://www.npmjs.com/package/react-icons
+https://react-icons.github.io/react-icons/
+Card Boostrap: https://react-bootstrap.netlify.app/components/cards/#cards
+Grid Design Bootsrap: https://react-bootstrap.github.io/layout/grid/
+*/

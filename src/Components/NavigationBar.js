@@ -43,7 +43,7 @@ export default class NavigationBar extends Component<Props> {
 
 /*
 Spacing: https://getbootstrap.com/docs/4.0/utilities/flex/
-Sizing:
+Sizing classes:
   https://getbootstrap.com/docs/4.0/utilities/sizing/
   https://stackoverflow.com/questions/49390642/re-positioning-items-on-navbar-collapse-in-bootstrap
 NavigationBar: https://getbootstrap.com/docs/4.1/components/navbar/
