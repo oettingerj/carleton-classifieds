@@ -73,5 +73,6 @@ export default connect()(GoogleLoginPage)
 
 /*
 Google Log in: https://www.npmjs.com/package/react-google-login
-
+How to set up Google Login references:
+https://www.youtube.com/watch?v=5-jBzkttbx0&t=229s
 */

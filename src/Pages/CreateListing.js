@@ -197,9 +197,12 @@ class CreateListing extends Component<Props, State> {
   }
   /*
     Card Component: https://react-bootstrap.github.io/components/cards/#images
+    Formik Integration: https://react-bootstrap.github.io/components/forms/
     Form Component: https://react-bootstrap.github.io/components/forms/
     https://stackoverflow.com/questions/4328947/limit-file-format-when-using-input-type-file
     https://stackoverflow.com/questions/46656476/rendering-empty-space-in-react
+    Generate ID for posts reference:
+    https://dev.to/rahmanfadhil/how-to-generate-unique-id-in-javascript-1b13
   */
 }
 const mapStateToProps = (state) => ({
