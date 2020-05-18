@@ -22,7 +22,8 @@ const locationSchema = yup.object({
 const formSchema = yup.object({
   pickup: locationSchema,
   dropoff: locationSchema,
-  datetime: yup.date().required(),
+  date: yup.date().required(),
+  time: yup.string().required(),
   ampm: yup.string().required(),
   passengers: yup.number().required().integer().min(1)
 })
@@ -30,7 +31,8 @@ const formSchema = yup.object({
 const initialFormValues = {
   pickup: null,
   dropoff: null,
-  datetime: null,
+  date: null,
+  time: null,
   ampm: 'AM',
   passengers: 1
 }
@@ -122,7 +124,7 @@ class CreateRideRequest extends Component<Props, State> {
   }
 
   handleSubmit = (values: any) => {
-    const time = moment(values.datetime)
+    const time = moment(`${values.date} ${values.time}`)
     if (values.ampm === 'PM') time.add(12, 'hours')
     const ride: RideListing = {
       id: this.generateRandomID(),
@@ -132,7 +134,8 @@ class CreateRideRequest extends Component<Props, State> {
       startLocation: values.pickup,
       endLocation: values.dropoff,
       passengers: values.passengers,
-      distance: calculateDistance(values.pickup, values.dropoff)
+      distance: calculateDistance(values.pickup, values.dropoff),
+      sold: false
     }
 
     this.props.dispatch(ListingActions.createRideRequest(ride))
@@ -185,11 +188,21 @@ class CreateRideRequest extends Component<Props, State> {
               <Col md='auto'>
                 <Form.Control
                   required
-                  placeholder='MM/DD/YY hh:mm'
-                  name='datetime'
-                  value={values.datetime}
+                  placeholder='MM/DD/YY'
+                  name='date'
+                  value={values.date}
                   onChange={handleChange}
-                  isValid={touched.datetime && !errors.datetime}
+                  isValid={touched.date && !errors.date}
+                />
+              </Col>
+              <Col md={4}>
+                <Form.Control
+                  required
+                  placeholder='hh:mm'
+                  name='time'
+                  value={values.time}
+                  onChange={handleChange}
+                  isValid={touched.time && !errors.time}
                 />
               </Col>
               <Col md='auto'>

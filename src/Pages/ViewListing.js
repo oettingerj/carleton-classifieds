@@ -42,16 +42,24 @@ class ViewListing extends Component<Props, State> {
                 <Col md={8}>
                   <Card.Img variant='bottom' src={this.props.listing.img} className='w-75' />
                 </Col>
-                <Col md={2}>
-                  <Card.Title>{this.props.listing.title}</Card.Title>
-                  <Card.Subtitle>{this.props.listing.user.name}</Card.Subtitle>
-                </Col>
-                <Col md={2}>
-                  <Card.Title>${this.props.listing.price}</Card.Title>
+                <Col>
+                  <Row>
+                    <Col>
+                      <Card.Title>{this.props.listing.title}</Card.Title>
+                      <Card.Subtitle>{this.props.listing.user.name}</Card.Subtitle>
+                    </Col>
+                    <Col>
+                      <Card.Title>${this.props.listing.price}</Card.Title>
+                    </Col>
+                  </Row>
+                  <Row className='mt-3'>
+                    <Col>
+                      <Card.Text>{this.props.listing.description}</Card.Text>
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
-              <Card.Text className='p-2'>{this.props.listing.description}</Card.Text>
-              <Row className='justify-content-md-center'>
+              <Row className='justify-content-md-center mt-3'>
                 <Button variant='outline-primary' onClick={this.handleSubmit}>I'm Interested</Button>
               </Row>
             </Card.Body>
