@@ -59,7 +59,7 @@ class CreateListing extends Component<Props, State> {
       price: values.price,
       sold: false
     }
-    this.props.dispatch(ListingActions.saveListing(listing))
+    //this.props.dispatch(ListingActions.saveListing(listing))
     this.props.dispatch(UserActions.saveOwnListings(listing))
     this.props.dispatch(ListingActions.createItemRequest(listing))
     this.setState({ showModal: true })
