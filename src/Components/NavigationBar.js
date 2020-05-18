@@ -47,4 +47,6 @@ Sizing classes:
   https://getbootstrap.com/docs/4.0/utilities/sizing/
   https://stackoverflow.com/questions/49390642/re-positioning-items-on-navbar-collapse-in-bootstrap
 NavigationBar: https://getbootstrap.com/docs/4.1/components/navbar/
+https://react-bootstrap.github.io/components/navbar/
+SearchBar and Button 30-33: https://react-bootstrap.github.io/components/navbar/
 */

@@ -15,31 +15,15 @@ type Props = {
   style?: {},
   dispatch: ({}) => void
 }
-type State = {
-  liked: boolean
-}
 
 class ListingComponent extends Component<Props, State> {
-  constructor (props: Props) {
-    super(props)
-    this.state = {
-      liked: false
-    }
-  }
 
   handleLikePress = () => {
     if (this.props.listing.sold === false) {
-      this.setState({
-        liked: true
-      })
-
       this.props.dispatch(ListingActions.liked(this.props.listing.id))
       this.props.dispatch(UserActions.saveListings(this.props.listing.id))
     }
     if (this.props.listing.sold === true) {
-      this.setState({
-        liked: false
-      })
       this.props.dispatch(ListingActions.unliked(this.props.listing.id))
       this.props.dispatch(UserActions.unsaveListings(this.props.listing.id))
     }

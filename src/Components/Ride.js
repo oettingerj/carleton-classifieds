@@ -17,18 +17,12 @@ type Props = {
   style?: {},
   dispatch: ({}) => void
 }
-type State = {
-  liked: boolean
-}
 
 class RideComponent extends Component<Props, State> {
   dateString: string
 
   constructor (props: Props) {
     super(props)
-    this.state = {
-      liked: false
-    }
 
     const dateObj = moment(this.props.ride.datetime)
     this.dateString = dateObj.format('ddd MMM D, h:mm a')
@@ -46,16 +40,10 @@ class RideComponent extends Component<Props, State> {
 
   handleLikePress = () => {
     if (this.props.ride.sold === false) {
-      this.setState({
-        liked: true
-      })
       this.props.dispatch(ListingActions.likedRides(this.props.ride.id))
       this.props.dispatch(UserActions.saveRides(this.props.ride.id))
     }
     if (this.props.ride.sold === true) {
-      this.setState({
-        liked: false
-      })
       this.props.dispatch(ListingActions.unlikedRides(this.props.ride.id))
       this.props.dispatch(UserActions.unsaveRides(this.props.ride.id))
     }
