@@ -43,3 +43,6 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps)(UserRides)
+/*
+Image: 'https://www.freepnglogos.com/uploads/pin-png/location-pin-connectsa'
+*/
