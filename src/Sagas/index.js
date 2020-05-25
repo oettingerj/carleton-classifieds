@@ -8,8 +8,7 @@ import { ListingTypes } from '../Redux/ListingRedux'
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas'
-import { createRideRequest } from './ListingSagas'
-import { createItemRequest } from './ListingSagas'
+import { createRideRequest, createItemRequest } from './ListingSagas'
 
 /* ------------- Connect Types To Sagas ------------- */
 

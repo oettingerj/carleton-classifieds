@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "PORT=5000 react-scripts start",
-    "build": "react-scripts build",
-    "gcp-build": "react-scripts build"
+    "build": "react-scripts build"
   },
   "dependencies": {
     "apisauce": "^1.1.1",
