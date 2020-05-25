@@ -41,5 +41,6 @@ export default () => {
   }
 }
 
-export const GOOGLE_API_KEY = 'AIzaSyDQxf6bbw9DxeYDg40WN8PbDeQ-oF9SYiw'
-export const GOOGLE_LOGIN_CLIENT_ID = '578173933063-2bldsbnkidcvoiq20eqeasv7u6u1fog3.apps.googleusercontent.com'
+// ENTER YOUR KEYS BELOW
+export const GOOGLE_API_KEY = ''
+export const GOOGLE_LOGIN_CLIENT_ID = ''
