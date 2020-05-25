@@ -29,7 +29,7 @@ Learn more [here](https://flow.org/en/docs/getting-started/). You can add suppor
 in your IDE of choice.
 
 Much of our frontend uses components from the [react-bootstrap](https://react-bootstrap.github.io)
-library.
+library. Specifically, we also make use of the navigation bar, modal, form and card components.
 
 ## Project breakdown
 
