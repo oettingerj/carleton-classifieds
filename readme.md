@@ -105,6 +105,26 @@ This folder contains React components that serve as entire pages in the site.
 The top-level component is `Root.js`, which wraps the entire app in the necessary
 components to make Redux and react-router function.
 
+Many of the components in this folder are connected to Redux. Here's an example
+of how that's done (from the bottom of `Home.js`):
+
+```js
+const mapStateToProps = (state) => ({
+  /*
+    Here you can pass redux objects to the props of your component.
+    state.listings.listings will now be available within the component
+    at this.props.listings
+  */
+  listings: state.listings.listings
+})
+
+/*
+  Instead of exporting the Home component at the top of the file where it 
+  is defined, we export the connected component here.
+*/
+export default connect(mapStateToProps)(Home)
+```
+
 ### Redux
 
 This folder contains all of the Redux files. In `index.js`, all these files are
