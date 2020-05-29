@@ -1,5 +1,7 @@
 # Carleton Classifieds Frontend
 
+Tresa Xavier and Josh Oettinger (Last Updated: 29th May 2020)
+
 This repository contains the code for the React site that serves as the 
 frontend for Carleton Classifieds.
 
